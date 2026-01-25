@@ -87,7 +87,7 @@
 <div class="section">
   <h2>Abstract</h2>
   <p>
-  Offline reinforcement learning in sparse, long-horizon environments suffers from compounding value errors and dataset-induced uncertainty...
+  Offline reinforcement learning (RL) in sparse, long-horizon environments is challenging because value estimation errors compound over long backup horizons, and offline datasets often provide limited coverage. While $n$-step returns mitigate long-horizon bias, they also amplify return variance, which can destabilize offline learning under heterogeneous behavior data. We show that this variance amplification constitutes a primary failure mode of naïvely applying long-horizon return targets in offline RL. To address this challenge, we propose \textbf{\color{magenta}VAN-Flow}, a variance-averse offline RL framework that couples $n$-step learning with categorical distributional value estimation. VAN-Flow introduces a variance-averse expectation that downweights unreliable high-variance return targets, together with a $Q$-guided flow-matching policy and rejection sampling to mitigate out-of-distribution actions. Notably, VAN-Flow shows remarkable improvements on challenging datasets with heterogeneous behavior data.
   </p>
 </div>
 
