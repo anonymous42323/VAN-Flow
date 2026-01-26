@@ -27,14 +27,9 @@
       letter-spacing: -0.4px;
     }
 
-    .brand {
-      font-weight: 800;
-      color: #FF2D8E;
-    }
+    .brand { font-weight: 800; color: #FF2D8E; }
 
-    .buttons {
-      margin-top: 18px;
-    }
+    .buttons { margin-top: 18px; }
 
     .buttons a {
       display: inline-block;
@@ -48,19 +43,12 @@
       background: #fff;
     }
 
-    .buttons a:hover {
-      background: #f3f3f3;
-    }
+    .buttons a:hover { background: #f3f3f3; }
 
     .section {
       max-width: 900px;
       margin: 0 auto 70px auto;
       padding: 0 20px;
-    }
-
-    .section h2 {
-      margin-top: 0;
-      letter-spacing: -0.2px;
     }
 
     .figure {
@@ -82,6 +70,33 @@
       margin-top: 10px;
     }
 
+    /* ===== Fancy Section Title ===== */
+    .fancy-title {
+      text-align: center;
+      font-size: 34px;
+      font-weight: 800;
+      margin: 80px 0 10px 0;
+      letter-spacing: -0.5px;
+      position: relative;
+    }
+
+    .fancy-title::after {
+      content: "";
+      display: block;
+      width: 70px;
+      height: 4px;
+      margin: 12px auto 0 auto;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #00c6a7, #00a8ff);
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: #e8e8e8;
+      margin: 70px 0 40px 0;
+    }
+
     /* ===== Qualitative Videos ===== */
     .video-section {
       max-width: 1300px;
@@ -89,16 +104,9 @@
       padding: 0 20px;
     }
 
-    .video-section h2 {
-      text-align: center;
-      margin: 0 0 18px 0;
-      letter-spacing: -0.2px;
-    }
-
-    /* ===== Pair headers aligned to (1,2) and (3,4) ===== */
     .pair-header-row {
       display: grid;
-      grid-template-columns: 1fr 1fr 78px 1fr 1fr; /* middle gap = 120px * 0.65 = 78px */
+      grid-template-columns: 1fr 1fr 78px 1fr 1fr;
       align-items: end;
       margin-bottom: 10px;
     }
@@ -108,14 +116,10 @@
       text-align: center;
       font-weight: 800;
       font-size: 16px;
-      letter-spacing: -0.1px;
     }
 
-    .mid-gap {
-      width: 100%;
-    }
+    .mid-gap { width: 100%; }
 
-    /* ===== Video row: add small separators between 1|2 and 3|4, reduce middle gap ===== */
     .video-grid {
       display: grid;
       grid-template-columns: 1fr 22px 1fr 78px 1fr 22px 1fr;
@@ -128,18 +132,12 @@
       justify-content: center;
       color: #cfcfcf;
       font-weight: 800;
-      user-select: none;
       font-size: 18px;
-      line-height: 1;
     }
 
-    .pair-sep::before {
-      content: "|";
-    }
+    .pair-sep::before { content: "|"; }
 
-    .video-card {
-      text-align: center;
-    }
+    .video-card { text-align: center; }
 
     .video-card p {
       margin: 6px 0 8px 0;
@@ -147,15 +145,9 @@
       font-weight: 700;
     }
 
-    .tag-proposed {
-      color: #FF2D8E;
-    }
+    .tag-proposed { color: #FF2D8E; }
+    .tag-baseline { color: #444; }
 
-    .tag-baseline {
-      color: #444;
-    }
-
-    /* Square videos */
     .video-frame {
       width: 100%;
       aspect-ratio: 1 / 1;
@@ -172,44 +164,19 @@
       display: block;
     }
 
-    /* Mobile: stack */
     @media (max-width: 1000px) {
-      .pair-header-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .pair-title {
-        grid-column: auto;
-      }
-
-      .mid-gap {
-        display: none;
-      }
-
-      .video-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .pair-sep {
-        display: none;
-      }
-
-      .hero h1 {
-        font-size: 34px;
-      }
+      .pair-header-row { grid-template-columns: 1fr; gap: 8px; }
+      .pair-title { grid-column: auto; }
+      .mid-gap, .pair-sep { display: none; }
+      .video-grid { grid-template-columns: 1fr; gap: 18px; }
+      .hero h1 { font-size: 34px; }
     }
   </style>
 
   <!-- MathJax -->
   <script>
     window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['\\[', '\\]']],
-        processEscapes: true
-      },
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
       svg: { fontCache: 'global' }
     };
   </script>
@@ -232,73 +199,58 @@
     </div>
   </div>
 
-  <!-- ===== Qualitative Videos ===== -->
-  <div class="video-section">
-    <h2>Qualitative Results</h2>
+  <div class="section-divider"></div>
+  <h2 class="fancy-title">Qualitative Results</h2>
 
-    <!-- (4) Titles centered above each pair: (1,2) and (3,4) -->
+  <div class="video-section">
     <div class="pair-header-row">
       <div class="pair-title">AntMaze-Play</div>
       <div class="mid-gap"></div>
       <div class="pair-title">AntMaze-Explore</div>
     </div>
 
-    <!-- (2) Add separators between 1|2 and 3|4; (3) middle gap reduced to 65% -->
     <div class="video-grid">
-
-      <!-- 1 -->
       <div class="video-card">
         <p class="tag-baseline">FQL-n</p>
         <div class="video-frame">
           <video autoplay loop muted playsinline preload="metadata">
-            <source src="assets/video/antmaze_large_play_fql.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            <source src="assets/video/antmaze_play_fql.mp4" type="video/mp4">
           </video>
         </div>
       </div>
 
-      <!-- sep between 1 and 2 -->
-      <div class="pair-sep" aria-hidden="true"></div>
+      <div class="pair-sep"></div>
 
-      <!-- 2 -->
       <div class="video-card">
         <p class="tag-proposed">VAN-Flow (Ours)</p>
         <div class="video-frame">
           <video autoplay loop muted playsinline preload="metadata">
-            <source src="assets/video/antmaze_large_play_vanflow.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            <source src="assets/video/antmaze_play_vanflow.mp4" type="video/mp4">
           </video>
         </div>
       </div>
 
-      <!-- middle gap (65%) -->
       <div class="mid-gap"></div>
 
-      <!-- 3 -->
       <div class="video-card">
         <p class="tag-baseline">FQL-n</p>
         <div class="video-frame">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="assets/video/antmaze_explore_fql.mp4" type="video/mp4">
-            Your browser does not support the video tag.
           </video>
         </div>
       </div>
 
-      <!-- sep between 3 and 4 -->
-      <div class="pair-sep" aria-hidden="true"></div>
+      <div class="pair-sep"></div>
 
-      <!-- 4 -->
       <div class="video-card">
         <p class="tag-proposed">VAN-Flow (Ours)</p>
         <div class="video-frame">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="assets/video/antmaze_explore_vanflow.mp4" type="video/mp4">
-            Your browser does not support the video tag.
           </video>
         </div>
       </div>
-
     </div>
 
     <div class="caption">
@@ -306,54 +258,25 @@
     </div>
   </div>
 
-  <!-- ===== Abstract ===== -->
+  <div class="section-divider"></div>
+  <h2 class="fancy-title">Abstract</h2>
+
   <div class="section">
-    <h2>Abstract</h2>
     <p>
-      Offline reinforcement learning (RL) in sparse, long-horizon environments is challenging because value estimation
-      errors compound over long backup horizons. While $n$-step returns mitigate long-horizon bias, they amplify return
-      variance, destabilizing offline learning. We propose <b style="color:#FF2D8E;">VAN-Flow</b>, a variance-averse
-      offline RL framework that combines multi-step learning with categorical distributional value estimation and
-      variance-aware target weighting.
+      Offline reinforcement learning (RL) in sparse, long-horizon environments is challenging...
     </p>
   </div>
 
-  <!-- ===== Why Variance-Averse Training is Needed? ===== -->
-  <div class="section">
-    <h2>Why Variance-Averse Training is Needed?</h2>
+  <div class="section-divider"></div>
+  <h2 class="fancy-title">Why Variance-Averse Training is Needed?</h2>
 
+  <div class="section">
     <div class="figure">
-      <img src="assets/image/why_variance_averse.png" alt="Why variance-averse training is needed">
+      <img src="assets/figures/why_variance_averse.png" alt="Why variance-averse training is needed">
     </div>
     <div class="caption">
       Offline RL performance on sparse-reward tasks under varying dataset return variance.
     </div>
-
-    <p>
-      Long-horizon decision-making under sparse rewards is notoriously challenging because informative feedback is
-      delayed and rarely observed, making value estimation highly susceptible to error propagation. This issue becomes
-      substantially more severe in offline RL, where learning is constrained to a fixed dataset with limited coverage.
-      Prior work identifies that this difficulty is driven by the <em>curse of horizon</em>, where bootstrapping errors
-      accumulate over long trajectories and degrade value accuracy. A common remedy is <em>value horizon reduction</em>,
-      most notably $n$-step returns, which shorten the effective backup horizon.
-    </p>
-
-    <p>
-      However, increasing the return horizon inevitably amplifies return variance, which can destabilize learning.
-      In offline RL, this effect is further exacerbated because larger $n$ aggregates rewards collected under diverse
-      behavior policies, yielding highly heterogeneous and high-variance return targets. As shown above, naively
-      applying $n$-step returns (FQL-n) works well when dataset variance is low (<b>navigate</b>, <b>play</b>) but can
-      become ineffective or even collapse under high-variance datasets (<b>explore</b>, <b>noisy</b>).
-      In contrast, <span class="tag-proposed">variance-averse training</span> stabilizes learning by downweighting
-      unreliable high-variance return targets, consistently recovering the benefits of long-horizon returns.
-    </p>
-
-    <p>
-      These results suggest that the effectiveness of $n$-step returns in offline RL is fundamentally determined by
-      how return variance is controlled. VAN-Flow explicitly models return uncertainty with a distributional critic,
-      enabling variance-aware learning that preserves the bias-reduction benefits of $n$-step returns without suffering
-      from variance amplification.
-    </p>
   </div>
 
   <div class="footer" style="max-width:900px;margin:0 auto 40px auto;padding:0 20px;color:#777;font-size:13px;text-align:center;">
