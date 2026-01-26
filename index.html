@@ -103,12 +103,10 @@
       margin: 0 0 14px 0;
     }
 
+    /* 🔥 White box style removed */
     .qbox{
-      border: 1px solid #e9e9ee;
-      border-radius: 16px;
-      padding: 26px 22px;
-      background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.05);
+      padding: 0;
+      margin-top: 10px;
     }
 
     .qtext{
@@ -143,6 +141,7 @@
       text-align: center;
       font-size: 14px;
       color: #666;
+      margin-bottom: 40px;
     }
 
     .pair-header-row {
@@ -240,7 +239,6 @@
     </div>
   </div>
 
-  <!-- INTRO + QUESTION + QUALITATIVE RESULTS -->
   <div class="intro-wrap">
     <p class="intro-lead">
       In this paper, we address a core challenge of offline RL in <b>long-horizon, sparse-reward</b> environments:
@@ -249,22 +247,23 @@
 
     <div class="qbox">
       <p class="qtext">
-        How can we leverage $n$-step returns in a variance-aware manner to improve offline RL performance?
+        How can we leverage $n$-step returns in a variance-aware manner to improve offline RL performance in sparse,
+        long-horizon environments?
       </p>
 
       <div class="highlight-box">
-        Our answer: <span class="emph">variance-averse $n$-step returns</span> stabilize long-horizon learning.
+        Our answer: <span class="emph">variance-averse $n$-step returns</span> stabilize long-horizon learning by
+        downweighting unreliable high-variance return targets.
       </div>
 
-      <div class="subhint" style="margin-bottom:30px;">
+      <div class="subhint">
         Below, we provide qualitative comparisons (FQL-n vs. <span style="color:#FF2D8E;font-weight:800;">VAN-Flow</span>).
       </div>
 
-      <h2 style="text-align:center; font-size:28px; font-weight:800; margin:10px 0 30px 0;">
-        Qualitative Results
-      </h2>
+      <!-- Qualitative Results moved here -->
+      <h2 class="fancy-title" style="margin-top:40px;">Qualitative Results</h2>
 
-      <div class="video-section" style="margin-bottom:10px;">
+      <div class="video-section">
         <div class="pair-header-row">
           <div class="pair-title">AntMaze-Play</div>
           <div class="mid-gap"></div>
@@ -315,7 +314,7 @@
           </div>
         </div>
 
-        <div class="caption" style="margin-top:18px;">
+        <div class="caption">
           Qualitative comparison between FQL-n and the proposed variance-averse VAN-Flow.
         </div>
       </div>
@@ -328,7 +327,8 @@
   <div class="section">
     <p>
       Offline reinforcement learning (RL) in sparse, long-horizon environments is challenging because value estimation
-      errors compound over long backup horizons...
+      errors compound over long backup horizons. While $n$-step returns mitigate long-horizon bias, they amplify return
+      variance, destabilizing offline learning...
     </p>
   </div>
 
