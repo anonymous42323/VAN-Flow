@@ -27,14 +27,9 @@
       letter-spacing: -0.4px;
     }
 
-    .brand {
-      font-weight: 800;
-      color: #FF2D8E;
-    }
+    .brand { font-weight: 800; color: #FF2D8E; }
 
-    .buttons {
-      margin-top: 18px;
-    }
+    .buttons { margin-top: 18px; }
 
     .buttons a {
       display: inline-block;
@@ -48,9 +43,7 @@
       background: #fff;
     }
 
-    .buttons a:hover {
-      background: #f3f3f3;
-    }
+    .buttons a:hover { background: #f3f3f3; }
 
     .section {
       max-width: 900px;
@@ -58,15 +51,7 @@
       padding: 0 20px;
     }
 
-    .section h2 {
-      margin-top: 0;
-      letter-spacing: -0.2px;
-    }
-
-    .figure {
-      text-align: center;
-      margin: 30px 0 10px 0;
-    }
+    .figure { text-align: center; margin: 30px 0 10px 0; }
 
     .figure img {
       max-width: 100%;
@@ -104,10 +89,7 @@
       font-weight: 800;
     }
 
-    .video-title {
-      font-size: 16px;
-      letter-spacing: -0.1px;
-    }
+    .video-title { font-size: 16px; }
 
     .video-grid {
       display: grid;
@@ -115,13 +97,9 @@
       align-items: start;
     }
 
-    .video-spacer {
-      width: 100%;
-    }
+    .video-spacer { width: 100%; }
 
-    .video-card {
-      text-align: center;
-    }
+    .video-card { text-align: center; }
 
     .video-card p {
       margin: 6px 0 8px 0;
@@ -129,18 +107,13 @@
       font-weight: 700;
     }
 
-    .tag-proposed {
-      color: #FF2D8E;
-    }
+    .tag-proposed { color: #FF2D8E; }
+    .tag-baseline { color: #444; }
 
-    .tag-baseline {
-      color: #444;
-    }
-
-    /* 🔥 모든 영상 동일한 큰 크기로 강제 */
+    /* 🔥 정사각형 비디오 프레임 */
     .video-frame {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 1 / 1;
       border-radius: 12px;
       border: 1px solid #eee;
       overflow: hidden;
@@ -155,34 +128,17 @@
     }
 
     @media (max-width: 1000px) {
-      .video-title-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .video-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .video-spacer {
-        display: none;
-      }
-
-      .hero h1 {
-        font-size: 34px;
-      }
+      .video-title-row { grid-template-columns: 1fr; gap: 8px; }
+      .video-grid { grid-template-columns: 1fr; gap: 18px; }
+      .video-spacer { display: none; }
+      .hero h1 { font-size: 34px; }
     }
   </style>
 
   <!-- MathJax -->
   <script>
     window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['\\[', '\\]']],
-        processEscapes: true
-      },
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
       svg: { fontCache: 'global' }
     };
   </script>
@@ -222,7 +178,7 @@
       <div class="video-card">
         <p class="tag-baseline">FQL-n</p>
         <div class="video-frame">
-          <video autoplay loop muted playsinline preload="auto">
+          <video controls autoplay loop muted playsinline preload="auto">
             <source src="assets/video/antmaze_play_fql.mp4" type="video/mp4">
           </video>
         </div>
@@ -231,7 +187,7 @@
       <div class="video-card">
         <p class="tag-proposed">VAN-Flow (Ours)</p>
         <div class="video-frame">
-          <video autoplay loop muted playsinline preload="auto">
+          <video controls autoplay loop muted playsinline preload="auto">
             <source src="assets/video/antmaze_play_vanflow.mp4" type="video/mp4">
           </video>
         </div>
@@ -242,7 +198,7 @@
       <div class="video-card">
         <p class="tag-baseline">FQL-n</p>
         <div class="video-frame">
-          <video autoplay loop muted playsinline preload="auto">
+          <video controls autoplay loop muted playsinline preload="auto">
             <source src="assets/video/antmaze_explore_fql.mp4" type="video/mp4">
           </video>
         </div>
@@ -251,7 +207,7 @@
       <div class="video-card">
         <p class="tag-proposed">VAN-Flow (Ours)</p>
         <div class="video-frame">
-          <video autoplay loop muted playsinline preload="auto">
+          <video controls autoplay loop muted playsinline preload="auto">
             <source src="assets/video/antmaze_explore_vanflow.mp4" type="video/mp4">
           </video>
         </div>
@@ -273,44 +229,6 @@
       variance, destabilizing offline learning. We propose <b style="color:#FF2D8E;">VAN-Flow</b>, a variance-averse
       offline RL framework that combines multi-step learning with categorical distributional value estimation and
       variance-aware target weighting.
-    </p>
-  </div>
-
-  <!-- ===== Why Variance-Averse Training is Needed? ===== -->
-  <div class="section">
-    <h2>Why Variance-Averse Training is Needed?</h2>
-
-    <div class="figure">
-      <img src="assets/figures/why_variance_averse.png" alt="Why variance-averse training is needed">
-    </div>
-    <div class="caption">
-      Offline RL performance on sparse-reward tasks under varying dataset return variance.
-    </div>
-
-    <p>
-      Long-horizon decision-making under sparse rewards is notoriously challenging because informative feedback is
-      delayed and rarely observed, making value estimation highly susceptible to error propagation. This issue becomes
-      substantially more severe in offline RL, where learning is constrained to a fixed dataset with limited coverage.
-      Prior work identifies that this difficulty is driven by the <em>curse of horizon</em>, where bootstrapping errors
-      accumulate over long trajectories and degrade value accuracy. A common remedy is <em>value horizon reduction</em>,
-      most notably $n$-step returns, which shorten the effective backup horizon.
-    </p>
-
-    <p>
-      However, increasing the return horizon inevitably amplifies return variance, which can destabilize learning.
-      In offline RL, this effect is further exacerbated because larger $n$ aggregates rewards collected under diverse
-      behavior policies, yielding highly heterogeneous and high-variance return targets. As shown above, naively
-      applying $n$-step returns (FQL-n) works well when dataset variance is low (<b>navigate</b>, <b>play</b>) but can
-      become ineffective or even collapse under high-variance datasets (<b>explore</b>, <b>noisy</b>).
-      In contrast, <span class="tag-proposed">variance-averse training</span> stabilizes learning by downweighting
-      unreliable high-variance return targets, consistently recovering the benefits of long-horizon returns.
-    </p>
-
-    <p>
-      These results suggest that the effectiveness of $n$-step returns in offline RL is fundamentally determined by
-      how return variance is controlled. VAN-Flow explicitly models return uncertainty with a distributional critic,
-      enabling variance-aware learning that preserves the bias-reduction benefits of $n$-step returns without suffering
-      from variance amplification.
     </p>
   </div>
 
