@@ -95,28 +95,46 @@
       letter-spacing: -0.2px;
     }
 
-    .video-title-row {
+    /* ===== Pair headers aligned to (1,2) and (3,4) ===== */
+    .pair-header-row {
       display: grid;
-      grid-template-columns: 1fr 1fr 120px 1fr 1fr;
+      grid-template-columns: 1fr 1fr 78px 1fr 1fr; /* middle gap = 120px * 0.65 = 78px */
       align-items: end;
       margin-bottom: 10px;
-      text-align: center;
-      font-weight: 800;
     }
 
-    .video-title {
+    .pair-title {
+      grid-column: span 2;
+      text-align: center;
+      font-weight: 800;
       font-size: 16px;
       letter-spacing: -0.1px;
     }
 
+    .mid-gap {
+      width: 100%;
+    }
+
+    /* ===== Video row: add small separators between 1|2 and 3|4, reduce middle gap ===== */
     .video-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 120px 1fr 1fr;
+      grid-template-columns: 1fr 22px 1fr 78px 1fr 22px 1fr;
       align-items: start;
     }
 
-    .video-spacer {
-      width: 100%;
+    .pair-sep {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #cfcfcf;
+      font-weight: 800;
+      user-select: none;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .pair-sep::before {
+      content: "|";
     }
 
     .video-card {
@@ -137,10 +155,10 @@
       color: #444;
     }
 
-    /* 🔥 모든 영상 동일한 큰 크기로 강제 */
+    /* Square videos */
     .video-frame {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 1 / 1;
       border-radius: 12px;
       border: 1px solid #eee;
       overflow: hidden;
@@ -154,10 +172,19 @@
       display: block;
     }
 
+    /* Mobile: stack */
     @media (max-width: 1000px) {
-      .video-title-row {
+      .pair-header-row {
         grid-template-columns: 1fr;
         gap: 8px;
+      }
+
+      .pair-title {
+        grid-column: auto;
+      }
+
+      .mid-gap {
+        display: none;
       }
 
       .video-grid {
@@ -165,7 +192,7 @@
         gap: 18px;
       }
 
-      .video-spacer {
+      .pair-sep {
         display: none;
       }
 
@@ -209,50 +236,65 @@
   <div class="video-section">
     <h2>Qualitative Results</h2>
 
-    <div class="video-title-row">
-      <div></div>
-      <div class="video-title">AntMaze-Play</div>
-      <div></div>
-      <div class="video-title">AntMaze-Explore</div>
-      <div></div>
+    <!-- (4) Titles centered above each pair: (1,2) and (3,4) -->
+    <div class="pair-header-row">
+      <div class="pair-title">AntMaze-Play</div>
+      <div class="mid-gap"></div>
+      <div class="pair-title">AntMaze-Explore</div>
     </div>
 
+    <!-- (2) Add separators between 1|2 and 3|4; (3) middle gap reduced to 65% -->
     <div class="video-grid">
 
+      <!-- 1 -->
       <div class="video-card">
         <p class="tag-baseline">FQL-n</p>
         <div class="video-frame">
-          <video autoplay loop muted playsinline preload="auto">
+          <video autoplay loop muted playsinline preload="metadata">
             <source src="assets/video/antmaze_play_fql.mp4" type="video/mp4">
+            Your browser does not support the video tag.
           </video>
         </div>
       </div>
 
+      <!-- sep between 1 and 2 -->
+      <div class="pair-sep" aria-hidden="true"></div>
+
+      <!-- 2 -->
       <div class="video-card">
         <p class="tag-proposed">VAN-Flow (Ours)</p>
         <div class="video-frame">
-          <video autoplay loop muted playsinline preload="auto">
+          <video autoplay loop muted playsinline preload="metadata">
             <source src="assets/video/antmaze_play_vanflow.mp4" type="video/mp4">
+            Your browser does not support the video tag.
           </video>
         </div>
       </div>
 
-      <div class="video-spacer"></div>
+      <!-- middle gap (65%) -->
+      <div class="mid-gap"></div>
 
+      <!-- 3 -->
       <div class="video-card">
         <p class="tag-baseline">FQL-n</p>
         <div class="video-frame">
-          <video autoplay loop muted playsinline preload="auto">
+          <video autoplay loop muted playsinline preload="metadata">
             <source src="assets/video/antmaze_explore_fql.mp4" type="video/mp4">
+            Your browser does not support the video tag.
           </video>
         </div>
       </div>
 
+      <!-- sep between 3 and 4 -->
+      <div class="pair-sep" aria-hidden="true"></div>
+
+      <!-- 4 -->
       <div class="video-card">
         <p class="tag-proposed">VAN-Flow (Ours)</p>
         <div class="video-frame">
-          <video autoplay loop muted playsinline preload="auto">
+          <video autoplay loop muted playsinline preload="metadata">
             <source src="assets/video/antmaze_explore_vanflow.mp4" type="video/mp4">
+            Your browser does not support the video tag.
           </video>
         </div>
       </div>
