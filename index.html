@@ -47,7 +47,6 @@
 
     .buttons a:hover { background: #f3f3f3; }
 
-    .section,
     .video-section {
       max-width: 1300px;
       margin: 0 auto 70px auto;
@@ -58,11 +57,10 @@
       text-align: center;
       font-size: 34px;
       font-weight: 800;
-      margin: 80px 0 10px 0;
-      letter-spacing: -0.5px;
+      margin: 70px 0 20px 0;
       position: relative;
     }
-    
+
     .fancy-title::after {
       content: "";
       display: block;
@@ -71,46 +69,6 @@
       margin: 12px auto 0 auto;
       border-radius: 3px;
       background: #FF2D8E;
-    }
-
-    /* 🔥 Highlight Box (Moved Up) */
-    .highlight-box{
-      margin: 40px auto 50px auto;
-      max-width: 1200px;
-      border-radius: 14px;
-      padding: 18px 22px;
-      background: rgba(255, 45, 142, 0.08);
-      border: 1px solid rgba(255, 45, 142, 0.25);
-      text-align: center;
-      font-weight: 700;
-      color: #111;
-    }
-
-    .highlight-box .emph{
-      color: #FF2D8E;
-      font-weight: 900;
-    }
-
-    /* 🧾 Abstract Gray Box */
-    .abstract-box {
-      max-width: 1100px;
-      margin: 0 auto 60px auto;
-      padding: 32px 36px;
-      background: #ffffff;
-      border: 1px solid #e6e6e6;
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-      line-height: 1.75;
-      font-size: 0.95rem;
-    }
-
-    .intro-lead{
-      text-align: center;
-      font-size: 16px;
-      color: #444;
-      max-width: 900px;
-      margin: 0 auto 60px auto;
-      padding: 0 20px;
     }
 
     .pair-header-row {
@@ -173,6 +131,39 @@
       display: block;
     }
 
+    .caption {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-top: 14px;
+    }
+
+    .highlight-box{
+      margin: 40px auto 20px auto;
+      max-width: 900px;
+      border-radius: 14px;
+      padding: 18px 22px;
+      background: rgba(255, 45, 142, 0.08);
+      border: 1px solid rgba(255, 45, 142, 0.25);
+      text-align: center;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .highlight-box .emph{
+      color: #FF2D8E;
+      font-weight: 900;
+    }
+
+    .intro-lead{
+      text-align: center;
+      font-size: 16px;
+      color: #444;
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+    }
+
     .section-divider {
       width: 100%;
       height: 1px;
@@ -180,11 +171,66 @@
       margin: 70px 0 40px 0;
     }
 
+    /* ===== Abstract Box ===== */
+    .abstract-box {
+      max-width: 1100px;
+      margin: 0 auto 60px auto;
+      padding: 32px 36px;
+      background: #ffffff;
+      border: 1px solid #e6e6e6;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      line-height: 1.75;
+    }
+
+    /* ===== NEW TWO COLUMN CARDS ===== */
+    .two-col {
+      max-width: 1300px;
+      margin: 0 auto 80px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #f6f6f6;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 20px 22px 22px 22px;
+    }
+
+    .card-title {
+      margin: 0 0 10px 0;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
     @media (max-width: 1000px) {
       .pair-header-row { grid-template-columns: 1fr; gap: 8px; }
       .pair-title { grid-column: auto; }
       .mid-gap, .pair-sep { display: none; }
       .video-grid { grid-template-columns: 1fr; gap: 18px; }
+      .two-col { grid-template-columns: 1fr; }
       .hero h1 { font-size: 34px; }
     }
   </style>
@@ -200,12 +246,14 @@
 
 <body>
 
+  <!-- HERO -->
   <div class="hero">
     <h1>
       <span class="brand">VAN-Flow:</span>
       Variance-Averse $n$-Step Offline Reinforcement Learning <br>for Sparse Long-Horizon Environments
     </h1>
-    <p><em>ICML 2026</em></p>
+    <h2>ICML 2026</h2>
+    <p><em>Anonymous Authors</em></p>
 
     <div class="buttons">
       <a href="paper.pdf">📄 Paper</a>
@@ -213,88 +261,78 @@
     </div>
   </div>
 
-  <!-- 💡 MOVED HIGHLIGHT BOX HERE -->
-  <div class="highlight-box">
-    The $n$-step return with a <span class="emph">variance-averse expectation</span> effectively addresses the challenges of long-horizon, sparse-reward environments in offline RL.
-  </div>
-
-  <!-- 🎥 QUALITATIVE RESULTS -->
+  <!-- VIDEOS -->
   <div class="video-section">
+    <h2 class="fancy-title">Qualitative Results</h2>
     <div class="pair-header-row">
       <div class="pair-title">AntMaze-Play</div>
       <div class="mid-gap"></div>
       <div class="pair-title">AntMaze-Explore</div>
     </div>
-
     <div class="video-grid">
       <div class="video-card">
         <p class="tag-baseline">FQL-n</p>
-        <div class="video-frame">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="assets/video/antmaze_large_play_fql.mp4" type="video/mp4">
-          </video>
-        </div>
+        <div class="video-frame"><video autoplay loop muted playsinline><source src="assets/video/antmaze_play_fql.mp4"></video></div>
       </div>
-
       <div class="pair-sep"></div>
-
       <div class="video-card">
         <p class="tag-proposed">VAN-Flow (Ours)</p>
-        <div class="video-frame">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="assets/video/antmaze_large_play_vanflow.mp4" type="video/mp4">
-          </video>
-        </div>
+        <div class="video-frame"><video autoplay loop muted playsinline><source src="assets/video/antmaze_play_vanflow.mp4"></video></div>
       </div>
-
       <div class="mid-gap"></div>
-
       <div class="video-card">
         <p class="tag-baseline">FQL-n</p>
-        <div class="video-frame">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="assets/video/antmaze_explore_fql.mp4" type="video/mp4">
-          </video>
-        </div>
+        <div class="video-frame"><video autoplay loop muted playsinline><source src="assets/video/antmaze_explore_fql.mp4"></video></div>
       </div>
-
       <div class="pair-sep"></div>
-
       <div class="video-card">
         <p class="tag-proposed">VAN-Flow (Ours)</p>
-        <div class="video-frame">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="assets/video/antmaze_explore_vanflow.mp4" type="video/mp4">
-          </video>
-        </div>
+        <div class="video-frame"><video autoplay loop muted playsinline><source src="assets/video/antmaze_explore_vanflow.mp4"></video></div>
       </div>
     </div>
+    <div class="caption">Qualitative comparison between FQL-n and VAN-Flow.</div>
   </div>
+
+  <div class="highlight-box">
+    Our answer: <span class="emph">variance-averse $n$-step returns</span> stabilize long-horizon learning.
+  </div>
+
+  <p class="intro-lead">
+    We address a core challenge of offline RL in long-horizon sparse-reward environments.
+  </p>
 
   <div class="section-divider"></div>
   <h2 class="fancy-title">Abstract</h2>
 
-  <!-- 🧾 ABSTRACT IN GRAY BOX -->
   <div class="abstract-box">
-    Offline reinforcement learning (RL) in sparse, long-horizon environments is challenging because 
-    value estimation errors compound over long backup horizons, and offline datasets often provide 
-    limited coverage. While $n$-step returns mitigate long-horizon bias, they also amplify 
-    return variance, which can destabilize offline learning under heterogeneous behavior data. 
-    We show that this variance amplification constitutes a primary failure mode of naïvely applying 
-    long-horizon return targets in offline RL. 
-    To address this challenge, we propose 
-    <b style="color:#FF2D8E;">VAN-Flow</b>, 
-    a variance-averse offline RL framework that couples $n$-step learning with 
-    categorical distributional value estimation. 
-    VAN-Flow introduces a variance-averse expectation that downweights unreliable high-variance return targets, 
-    together with a $Q$-guided flow-matching policy and rejection sampling to mitigate out-of-distribution actions. 
-    Notably, VAN-Flow shows remarkable improvements on challenging datasets with heterogeneous behavior data.
+    <p>Offline reinforcement learning (RL) in sparse, long-horizon environments is challenging because value estimation errors compound over long backup horizons...</p>
   </div>
 
+  <!-- ===== NEW SECTION ===== -->
   <div class="section-divider"></div>
   <h2 class="fancy-title">Variance-Averse Expectation</h2>
 
+  <div class="two-col">
+    <div class="card">
+      <div class="card-img">
+        <img src="assets/figures/why_variance_averse.png" alt="Why variance-averse is needed">
+      </div>
+      <div class="card-body">
+        <div class="card-title">Why Variance-Averse is Needed?</div>
+        <p>Long-horizon offline RL suffers from variance amplification under heterogeneous data.</p>
+      </div>
+    </div>
 
-  
+    <div class="card">
+      <div class="card-img">
+        <img src="assets/figures/variance_averse_expectation.png" alt="Variance-averse expectation">
+      </div>
+      <div class="card-body">
+        <div class="card-title">Variance-Averse Expectation</div>
+        <p>We introduce a variance-averse expectation that downweights unreliable high-variance return targets.</p>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
