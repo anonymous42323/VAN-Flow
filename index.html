@@ -130,7 +130,7 @@
 
     .highlight-box{
       margin: 40px auto 20px auto;
-      max-width: 900px;
+      max-width: 1200px;
       border-radius: 14px;
       padding: 18px 22px;
       background: rgba(255, 45, 142, 0.08);
@@ -187,18 +187,12 @@
       Variance-Averse $n$-Step Offline Reinforcement Learning <br>for Sparse Long-Horizon Environments
     </h1>
     <h2>ICML 2026</h2>
-    <p><em>Anonymous Authors</em></p>
-
+  
     <div class="buttons">
       <a href="paper.pdf">📄 Paper</a>
       <a href="https://github.com/your-repo">💻 Code</a>
     </div>
   </div>
-
-  <!-- 🎥 QUALITATIVE RESULTS FIRST -->
-  <div class="video-section">
-    <h2 class="fancy-title">Qualitative Results</h2>
-
     <div class="pair-header-row">
       <div class="pair-title">AntMaze-Play</div>
       <div class="mid-gap"></div>
@@ -256,7 +250,7 @@
 
   <!-- 💡 OUR ANSWER -->
   <div class="highlight-box">
-    Our answer: <span class="emph">variance-averse $n$-step returns</span> stabilize long-horizon learning by downweighting unreliable high-variance return targets.
+    The $n$-step return with a <span class="emph">variance-averse expectation</span> effectively addresses the challenges of long-horizon, sparse-reward environments in offline RL by downweighting unreliable, high-variance return targets.
   </div>
 
   <!-- 🧠 INTRO TEXT -->
