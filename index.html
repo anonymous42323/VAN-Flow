@@ -268,21 +268,18 @@
   <div class="section">
 <p>
   Offline reinforcement learning (RL) in sparse, long-horizon environments is challenging because 
-  <b>value estimation errors compound over long backup horizons</b>, and offline datasets often provide 
-  <b>limited coverage</b>. While <b>$n$-step returns</b> mitigate long-horizon bias, they also amplify 
-  <b>return variance</b>, which can destabilize offline learning under heterogeneous behavior data. 
-  We show that this <b>variance amplification</b> constitutes a primary failure mode of naïvely applying 
+  value estimation errors compound over long backup horizons, and offline datasets often provide 
+  limited coverage. While $n$-step returns mitigate long-horizon bias, they also amplify 
+  return variance, which can destabilize offline learning under heterogeneous behavior data. 
+  We show that this variance amplification constitutes a primary failure mode of naïvely applying 
   long-horizon return targets in offline RL. 
   To address this challenge, we propose 
   <b style="color:#FF2D8E;">VAN-Flow</b>, 
-  a <b>variance-averse offline RL framework</b> that couples <b>$n$-step learning</b> with 
-  <b>categorical distributional value estimation</b>. 
-  VAN-Flow introduces a 
-  <b style="color:#FF2D8E;">variance-averse expectation</b> that downweights unreliable high-variance return targets, 
-  together with a <b>$Q$-guided flow-matching policy</b> and 
-  <b>rejection sampling</b> to mitigate out-of-distribution actions. 
-  Notably, <b style="color:#FF2D8E;">VAN-Flow shows remarkable improvements</b> on challenging datasets 
-  with heterogeneous behavior data.
+  a variance-averse offline RL framework</b> that couples $n$-step learning with 
+  categorical distributional value estimation. 
+  VAN-Flow introduces a variance-averse expectation that downweights unreliable high-variance return targets, 
+  together with a $Q$-guided flow-matching policy and rejection sampling to mitigate out-of-distribution actions. 
+  Notably, VAN-Flow shows remarkable improvements on challenging datasets with heterogeneous behavior data.
 </p>
   </div>
 
