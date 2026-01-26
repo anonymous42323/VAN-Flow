@@ -6,95 +6,172 @@
   <title>VAN-Flow</title>
 
   <style>
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;
-      line-height:1.6;margin:0;background:#fff;color:#111;
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      background: #ffffff;
+      color: #111;
     }
 
-    .hero{ text-align:center; margin:60px 0 40px; padding:0 16px; }
-    .hero h1{ font-size:44px; margin:0 0 10px; letter-spacing:-0.4px; }
-    .brand{ font-weight:800; color:#FF2D8E; }
-    .buttons{ margin-top:18px; }
-    .buttons a{
-      display:inline-block; padding:10px 18px; margin:6px;
-      border-radius:10px; border:1px solid #ddd;
-      text-decoration:none; color:#111; font-weight:600; background:#fff;
-    }
-    .buttons a:hover{ background:#f3f3f3; }
-
-    .section{ max-width:900px; margin:0 auto 70px; padding:0 20px; }
-    .section h2{ margin-top:0; letter-spacing:-0.2px; }
-
-    .figure{ text-align:center; margin:30px 0 10px; }
-    .figure img{
-      max-width:100%; height:auto; border-radius:12px; border:1px solid #eee;
+    .hero {
+      text-align: center;
+      margin-top: 60px;
+      margin-bottom: 40px;
+      padding: 0 16px;
     }
 
-    .caption{
-      text-align:center; font-size:14px; color:#666; margin-top:10px;
+    .hero h1 {
+      font-size: 44px;
+      margin-bottom: 10px;
+      letter-spacing: -0.4px;
+    }
+
+    .brand {
+      font-weight: 800;
+      color: #FF2D8E;
+    }
+
+    .buttons {
+      margin-top: 18px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      padding: 10px 18px;
+      margin: 6px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+      background: #fff;
+    }
+
+    .buttons a:hover {
+      background: #f3f3f3;
+    }
+
+    .section {
+      max-width: 900px;
+      margin: 0 auto 70px auto;
+      padding: 0 20px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      letter-spacing: -0.2px;
+    }
+
+    .figure {
+      text-align: center;
+      margin: 30px 0 10px 0;
+    }
+
+    .figure img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid #eee;
+    }
+
+    .caption {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
     }
 
     /* ===== Qualitative Videos ===== */
-    .video-section{ max-width:1300px; margin:0 auto 70px; padding:0 20px; }
-    .video-section h2{ text-align:center; margin:0 0 18px; letter-spacing:-0.2px; }
-
-    /* 1fr 1fr [BIG GAP] 1fr 1fr */
-    .video-title-row{
-      display:grid;
-      grid-template-columns: 1fr 1fr 120px 1fr 1fr;
-      align-items:end;
-      margin-bottom:10px;
-      text-align:center;
-      font-weight:800;
+    .video-section {
+      max-width: 1300px;
+      margin: 0 auto 70px auto;
+      padding: 0 20px;
     }
-    .video-title{ font-size:16px; letter-spacing:-0.1px; }
 
-    .video-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr 120px 1fr 1fr;
-      align-items:start;
+    .video-section h2 {
+      text-align: center;
+      margin: 0 0 18px 0;
+      letter-spacing: -0.2px;
     }
-    .video-spacer{ width:100%; }
 
-    .video-card{ text-align:center; }
-    .video-card p{ margin:6px 0 8px; font-size:14px; font-weight:700; }
-    .tag-proposed{ color:#FF2D8E; }
-    .tag-baseline{ color:#444; }
+    .video-title-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 120px 1fr 1fr;
+      align-items: end;
+      margin-bottom: 10px;
+      text-align: center;
+      font-weight: 800;
+    }
 
-    /* Ensure a stable frame + avoid “black” due to layout/first-frame delay */
-    .video-frame{
-      position:relative;
-      width:100%;
+    .video-title {
+      font-size: 16px;
+      letter-spacing: -0.1px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 120px 1fr 1fr;
+      align-items: start;
+    }
+
+    .video-spacer {
+      width: 100%;
+    }
+
+    .video-card {
+      text-align: center;
+    }
+
+    .video-card p {
+      margin: 6px 0 8px 0;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .tag-proposed {
+      color: #FF2D8E;
+    }
+
+    .tag-baseline {
+      color: #444;
+    }
+
+    /* 🔥 모든 영상 동일한 큰 크기로 강제 */
+    .video-frame {
+      width: 100%;
       aspect-ratio: 16 / 9;
-      border-radius:12px;
-      border:1px solid #eee;
-      background:#000;
-      overflow:hidden;
-    }
-    .video-frame video{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover;
-      border:0;
-      background:#000;
+      border-radius: 12px;
+      border: 1px solid #eee;
+      overflow: hidden;
+      background: #000;
     }
 
-    /* Small “open” link (helps when codec/autoplay fails) */
-    .open-link{
-      display:inline-block;
-      margin-top:8px;
-      font-size:12px;
-      color:#777;
-      text-decoration:none;
-      border-bottom:1px solid transparent;
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
-    .open-link:hover{ border-bottom-color:#bbb; color:#555; }
 
-    @media (max-width:1000px){
-      .video-title-row{ grid-template-columns:1fr; gap:8px; }
-      .video-grid{ grid-template-columns:1fr; gap:18px; }
-      .video-spacer{ display:none; }
-      .hero h1{ font-size:34px; }
+    @media (max-width: 1000px) {
+      .video-title-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .video-spacer {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
     }
   </style>
 
@@ -141,56 +218,45 @@
     </div>
 
     <div class="video-grid">
-      <!-- Play / FQL-n -->
+
       <div class="video-card">
         <p class="tag-baseline">FQL-n</p>
         <div class="video-frame">
-          <video autoplay loop muted playsinline preload="auto"
-                 poster="assets/figures/qualitative/antmaze_play_fql_poster.png">
+          <video autoplay loop muted playsinline preload="auto">
             <source src="assets/video/antmaze_play_fql.mp4" type="video/mp4">
           </video>
         </div>
-        <a class="open-link" href="assets/video/antmaze_play_fql.mp4" target="_blank" rel="noopener">Open video</a>
       </div>
 
-      <!-- Play / Ours -->
       <div class="video-card">
         <p class="tag-proposed">VAN-Flow (Ours)</p>
         <div class="video-frame">
-          <video autoplay loop muted playsinline preload="auto"
-                 poster="assets/figures/qualitative/antmaze_play_vanflow_poster.png">
+          <video autoplay loop muted playsinline preload="auto">
             <source src="assets/video/antmaze_play_vanflow.mp4" type="video/mp4">
           </video>
         </div>
-        <a class="open-link" href="assets/video/antmaze_play_vanflow.mp4" target="_blank" rel="noopener">Open video</a>
       </div>
 
-      <!-- BIG GAP -->
       <div class="video-spacer"></div>
 
-      <!-- Explore / FQL-n -->
       <div class="video-card">
         <p class="tag-baseline">FQL-n</p>
         <div class="video-frame">
-          <video autoplay loop muted playsinline preload="auto"
-                 poster="assets/figures/qualitative/antmaze_explore_fql_poster.png">
+          <video autoplay loop muted playsinline preload="auto">
             <source src="assets/video/antmaze_explore_fql.mp4" type="video/mp4">
           </video>
         </div>
-        <a class="open-link" href="assets/video/antmaze_explore_fql.mp4" target="_blank" rel="noopener">Open video</a>
       </div>
 
-      <!-- Explore / Ours -->
       <div class="video-card">
         <p class="tag-proposed">VAN-Flow (Ours)</p>
         <div class="video-frame">
-          <video autoplay loop muted playsinline preload="auto"
-                 poster="assets/figures/qualitative/antmaze_explore_vanflow_poster.png">
+          <video autoplay loop muted playsinline preload="auto">
             <source src="assets/video/antmaze_explore_vanflow.mp4" type="video/mp4">
           </video>
         </div>
-        <a class="open-link" href="assets/video/antmaze_explore_vanflow.mp4" target="_blank" rel="noopener">Open video</a>
       </div>
+
     </div>
 
     <div class="caption">
@@ -215,7 +281,7 @@
     <h2>Why Variance-Averse Training is Needed?</h2>
 
     <div class="figure">
-      <img src="assets/image/why_variance_averse.png" alt="Why variance-averse training is needed">
+      <img src="assets/figures/why_variance_averse.png" alt="Why variance-averse training is needed">
     </div>
     <div class="caption">
       Offline RL performance on sparse-reward tasks under varying dataset return variance.
