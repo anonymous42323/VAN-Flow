@@ -6,10 +6,7 @@
   <title>VAN-Flow</title>
 
   <style>
-    /* ✅ 전체 기본 글자 크기 1.5배 */
-    html {
-      font-size: 150%;
-    }
+    html { font-size: 150%; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
@@ -22,7 +19,7 @@
     .hero {
       text-align: center;
       margin-top: 60px;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
       padding: 0 16px;
     }
 
@@ -51,101 +48,17 @@
     .buttons a:hover { background: #f3f3f3; }
 
     .section,
-    .intro-wrap,
     .video-section {
       max-width: 1300px;
       margin: 0 auto 70px auto;
       padding: 0 20px;
     }
 
-    .figure { text-align: center; margin: 30px 0 10px 0; }
-    .figure img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      border: 1px solid #eee;
-    }
-
-    .caption {
-      text-align: center;
-      font-size: 14px;
-      color: #666;
-      margin-top: 10px;
-    }
-
     .fancy-title {
       text-align: center;
       font-size: 34px;
       font-weight: 800;
-      margin: 80px 0 10px 0;
-      letter-spacing: -0.5px;
-      position: relative;
-    }
-
-    .fancy-title::after {
-      content: "";
-      display: block;
-      width: 70px;
-      height: 4px;
-      margin: 12px auto 0 auto;
-      border-radius: 2px;
-      background: linear-gradient(90deg, #00c6a7, #00a8ff);
-    }
-
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background: #e8e8e8;
-      margin: 70px 0 40px 0;
-    }
-
-    .intro-wrap { margin-bottom: 36px; }
-
-    .intro-lead{
-      text-align: center;
-      font-size: 16px;
-      color: #444;
-      margin: 0 0 14px 0;
-    }
-
-    .qbox{
-      padding: 0;
-      margin-top: 10px;
-    }
-
-    .qtext{
-      margin: 0;
-      text-align: center;
-      font-family: Georgia, "Times New Roman", Times, serif;
-      font-style: italic;
-      font-size: 30px;
-      line-height: 1.25;
-      letter-spacing: -0.3px;
-      color: #111;
-    }
-
-    .highlight-box{
-      margin-top: 16px;
-      border-radius: 14px;
-      padding: 14px 16px;
-      background: rgba(255, 45, 142, 0.08);
-      border: 1px solid rgba(255, 45, 142, 0.25);
-      text-align: center;
-      font-weight: 700;
-      color: #111;
-    }
-
-    .highlight-box .emph{
-      color: #FF2D8E;
-      font-weight: 900;
-    }
-
-    .subhint{
-      margin-top: 10px;
-      text-align: center;
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 40px;
+      margin: 70px 0 20px 0;
     }
 
     .pair-header-row {
@@ -208,13 +121,52 @@
       display: block;
     }
 
+    .caption {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-top: 14px;
+    }
+
+    .highlight-box{
+      margin: 40px auto 20px auto;
+      max-width: 900px;
+      border-radius: 14px;
+      padding: 18px 22px;
+      background: rgba(255, 45, 142, 0.08);
+      border: 1px solid rgba(255, 45, 142, 0.25);
+      text-align: center;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .highlight-box .emph{
+      color: #FF2D8E;
+      font-weight: 900;
+    }
+
+    .intro-lead{
+      text-align: center;
+      font-size: 16px;
+      color: #444;
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: #e8e8e8;
+      margin: 70px 0 40px 0;
+    }
+
     @media (max-width: 1000px) {
       .pair-header-row { grid-template-columns: 1fr; gap: 8px; }
       .pair-title { grid-column: auto; }
       .mid-gap, .pair-sep { display: none; }
       .video-grid { grid-template-columns: 1fr; gap: 18px; }
       .hero h1 { font-size: 34px; }
-      .qtext { font-size: 22px; }
     }
   </style>
 
@@ -226,10 +178,6 @@
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
-
-<body>
-  <!-- 기존 body 내용 그대로 유지 -->
-
 
 <body>
 
@@ -247,87 +195,75 @@
     </div>
   </div>
 
-  <div class="intro-wrap">
-    <p class="intro-lead">
-      In this paper, we address a core challenge of offline RL in <b>long-horizon, sparse-reward</b> environments:
-      leveraging <b>$n$-step returns</b> without suffering from variance amplification.
-    </p>
+  <!-- 🎥 QUALITATIVE RESULTS FIRST -->
+  <div class="video-section">
+    <h2 class="fancy-title">Qualitative Results</h2>
 
-    <div class="qbox">
-      <p class="qtext">
-        How can we leverage $n$-step returns in a variance-aware manner to improve offline RL performance in sparse,
-        long-horizon environments?
-      </p>
+    <div class="pair-header-row">
+      <div class="pair-title">AntMaze-Play</div>
+      <div class="mid-gap"></div>
+      <div class="pair-title">AntMaze-Explore</div>
+    </div>
 
-      <div class="highlight-box">
-        Our answer: <span class="emph">variance-averse $n$-step returns</span> stabilize long-horizon learning by
-        downweighting unreliable high-variance return targets.
+    <div class="video-grid">
+      <div class="video-card">
+        <p class="tag-baseline">FQL-n</p>
+        <div class="video-frame">
+          <video autoplay loop muted playsinline preload="metadata">
+            <source src="assets/video/antmaze_play_fql.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
 
-      <div class="subhint">
-        Below, we provide qualitative comparisons (FQL-n vs. <span style="color:#FF2D8E;font-weight:800;">VAN-Flow</span>).
+      <div class="pair-sep"></div>
+
+      <div class="video-card">
+        <p class="tag-proposed">VAN-Flow (Ours)</p>
+        <div class="video-frame">
+          <video autoplay loop muted playsinline preload="metadata">
+            <source src="assets/video/antmaze_play_vanflow.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
 
-      <!-- Qualitative Results moved here -->
-      <h2 class="fancy-title" style="margin-top:40px;">Qualitative Results</h2>
+      <div class="mid-gap"></div>
 
-      <div class="video-section">
-        <div class="pair-header-row">
-          <div class="pair-title">AntMaze-Play</div>
-          <div class="mid-gap"></div>
-          <div class="pair-title">AntMaze-Explore</div>
+      <div class="video-card">
+        <p class="tag-baseline">FQL-n</p>
+        <div class="video-frame">
+          <video autoplay loop muted playsinline preload="metadata">
+            <source src="assets/video/antmaze_explore_fql.mp4" type="video/mp4">
+          </video>
         </div>
+      </div>
 
-        <div class="video-grid">
-          <div class="video-card">
-            <p class="tag-baseline">FQL-n</p>
-            <div class="video-frame">
-              <video autoplay loop muted playsinline preload="metadata">
-                <source src="assets/video/antmaze_play_fql.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
+      <div class="pair-sep"></div>
 
-          <div class="pair-sep"></div>
-
-          <div class="video-card">
-            <p class="tag-proposed">VAN-Flow (Ours)</p>
-            <div class="video-frame">
-              <video autoplay loop muted playsinline preload="metadata">
-                <source src="assets/video/antmaze_play_vanflow.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-
-          <div class="mid-gap"></div>
-
-          <div class="video-card">
-            <p class="tag-baseline">FQL-n</p>
-            <div class="video-frame">
-              <video autoplay loop muted playsinline preload="metadata">
-                <source src="assets/video/antmaze_explore_fql.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-
-          <div class="pair-sep"></div>
-
-          <div class="video-card">
-            <p class="tag-proposed">VAN-Flow (Ours)</p>
-            <div class="video-frame">
-              <video autoplay loop muted playsinline preload="metadata">
-                <source src="assets/video/antmaze_explore_vanflow.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-
-        <div class="caption">
-          Qualitative comparison between FQL-n and the proposed variance-averse VAN-Flow.
+      <div class="video-card">
+        <p class="tag-proposed">VAN-Flow (Ours)</p>
+        <div class="video-frame">
+          <video autoplay loop muted playsinline preload="metadata">
+            <source src="assets/video/antmaze_explore_vanflow.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </div>
+
+    <div class="caption">
+      Qualitative comparison between FQL-n and the proposed variance-averse VAN-Flow.
+    </div>
   </div>
+
+  <!-- 💡 OUR ANSWER -->
+  <div class="highlight-box">
+    Our answer: <span class="emph">variance-averse $n$-step returns</span> stabilize long-horizon learning by downweighting unreliable high-variance return targets.
+  </div>
+
+  <!-- 🧠 INTRO TEXT -->
+  <p class="intro-lead">
+    In this paper, we address a core challenge of offline RL in <b>long-horizon, sparse-reward</b> environments:
+    leveraging <b>$n$-step returns</b> without suffering from variance amplification.
+  </p>
 
   <div class="section-divider"></div>
   <h2 class="fancy-title">Abstract</h2>
@@ -338,10 +274,6 @@
       errors compound over long backup horizons. While $n$-step returns mitigate long-horizon bias, they amplify return
       variance, destabilizing offline learning...
     </p>
-  </div>
-
-  <div class="footer" style="max-width:1300px;margin:0 auto 40px auto;padding:0 20px;color:#777;font-size:13px;text-align:center;">
-    © Anonymous Authors • VAN-Flow Project Page
   </div>
 
 </body>
