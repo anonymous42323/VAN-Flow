@@ -17,7 +17,7 @@
     .hero {
       text-align: center;
       margin-top: 60px;
-      margin-bottom: 40px;
+      margin-bottom: 18px;
       padding: 0 16px;
     }
 
@@ -51,10 +51,7 @@
       padding: 0 20px;
     }
 
-    .figure {
-      text-align: center;
-      margin: 30px 0 10px 0;
-    }
+    .figure { text-align: center; margin: 30px 0 10px 0; }
 
     .figure img {
       max-width: 100%;
@@ -97,6 +94,62 @@
       margin: 70px 0 40px 0;
     }
 
+    /* ===== Intro Question Block ===== */
+    .intro-wrap{
+      max-width: 980px;
+      margin: 0 auto 36px auto;
+      padding: 0 20px;
+    }
+
+    .intro-lead{
+      text-align: center;
+      font-size: 16px;
+      color: #444;
+      margin: 0 0 14px 0;
+    }
+
+    .qbox{
+      border: 1px solid #e9e9ee;
+      border-radius: 16px;
+      padding: 26px 22px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.05);
+    }
+
+    .qtext{
+      margin: 0;
+      text-align: center;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-style: italic;
+      font-size: 30px;
+      line-height: 1.25;
+      letter-spacing: -0.3px;
+      color: #111;
+    }
+
+    .highlight-box{
+      margin-top: 16px;
+      border-radius: 14px;
+      padding: 14px 16px;
+      background: rgba(255, 45, 142, 0.08);
+      border: 1px solid rgba(255, 45, 142, 0.25);
+      text-align: center;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .highlight-box .emph{
+      color: #FF2D8E;
+      font-weight: 900;
+    }
+
+    .subhint{
+      margin-top: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+
     /* ===== Qualitative Videos ===== */
     .video-section {
       max-width: 1300px;
@@ -106,7 +159,7 @@
 
     .pair-header-row {
       display: grid;
-      grid-template-columns: 1fr 1fr 78px 1fr 1fr;
+      grid-template-columns: 1fr 1fr 78px 1fr 1fr; /* middle gap 65% of 120px */
       align-items: end;
       margin-bottom: 10px;
     }
@@ -133,6 +186,7 @@
       color: #cfcfcf;
       font-weight: 800;
       font-size: 18px;
+      user-select: none;
     }
 
     .pair-sep::before { content: "|"; }
@@ -150,7 +204,7 @@
 
     .video-frame {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 1 / 1;   /* square */
       border-radius: 12px;
       border: 1px solid #eee;
       overflow: hidden;
@@ -162,21 +216,28 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      background: #000;
     }
 
+    /* Mobile */
     @media (max-width: 1000px) {
       .pair-header-row { grid-template-columns: 1fr; gap: 8px; }
       .pair-title { grid-column: auto; }
       .mid-gap, .pair-sep { display: none; }
       .video-grid { grid-template-columns: 1fr; gap: 18px; }
       .hero h1 { font-size: 34px; }
+      .qtext{ font-size: 22px; }
     }
   </style>
 
   <!-- MathJax -->
   <script>
     window.MathJax = {
-      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
       svg: { fontCache: 'global' }
     };
   </script>
@@ -199,10 +260,37 @@
     </div>
   </div>
 
+  <!-- ===== (1) Opening 구성: 문제 제기(질문) + 컬러 박스 강조 + 바로 동영상 ===== -->
+  <div class="intro-wrap">
+    <p class="intro-lead">
+      In this paper, we address a core challenge of offline RL in <b>long-horizon, sparse-reward</b> environments:
+      <b>how to leverage $n$-step returns without suffering from variance amplification</b>.
+    </p>
+
+    <div class="qbox">
+      <p class="qtext">
+        How can we leverage $n$-step returns in a variance-aware manner to improve offline RL performance in sparse,
+        long-horizon environments?
+      </p>
+
+      <div class="highlight-box">
+        Key idea: <span class="emph">variance-averse $n$-step returns</span> make long-horizon learning reliable by
+        downweighting high-variance return targets.
+      </div>
+
+      <div class="subhint">
+        Below, we provide qualitative comparisons (FQL-n vs. <span style="color:#FF2D8E;font-weight:800;">VAN-Flow</span>).
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Qualitative Videos ===== -->
   <div class="section-divider"></div>
   <h2 class="fancy-title">Qualitative Results</h2>
 
   <div class="video-section">
+
+    <!-- Pair titles centered above each pair -->
     <div class="pair-header-row">
       <div class="pair-title">AntMaze-Play</div>
       <div class="mid-gap"></div>
@@ -210,44 +298,55 @@
     </div>
 
     <div class="video-grid">
+      <!-- 1 -->
       <div class="video-card">
         <p class="tag-baseline">FQL-n</p>
         <div class="video-frame">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="assets/video/antmaze_play_fql.mp4" type="video/mp4">
+            Your browser does not support the video tag.
           </video>
         </div>
       </div>
 
-      <div class="pair-sep"></div>
+      <!-- sep 1|2 -->
+      <div class="pair-sep" aria-hidden="true"></div>
 
+      <!-- 2 -->
       <div class="video-card">
         <p class="tag-proposed">VAN-Flow (Ours)</p>
         <div class="video-frame">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="assets/video/antmaze_play_vanflow.mp4" type="video/mp4">
+            Your browser does not support the video tag.
           </video>
         </div>
       </div>
 
+      <!-- middle gap (65%) -->
       <div class="mid-gap"></div>
 
+      <!-- 3 -->
       <div class="video-card">
         <p class="tag-baseline">FQL-n</p>
         <div class="video-frame">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="assets/video/antmaze_explore_fql.mp4" type="video/mp4">
+            Your browser does not support the video tag.
           </video>
         </div>
       </div>
 
-      <div class="pair-sep"></div>
+      <!-- sep 3|4 -->
+      <div class="pair-sep" aria-hidden="true"></div>
 
+      <!-- 4 -->
       <div class="video-card">
         <p class="tag-proposed">VAN-Flow (Ours)</p>
         <div class="video-frame">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="assets/video/antmaze_explore_vanflow.mp4" type="video/mp4">
+            Your browser does not support the video tag.
           </video>
         </div>
       </div>
@@ -258,15 +357,21 @@
     </div>
   </div>
 
+  <!-- ===== Abstract ===== -->
   <div class="section-divider"></div>
   <h2 class="fancy-title">Abstract</h2>
 
   <div class="section">
     <p>
-      Offline reinforcement learning (RL) in sparse, long-horizon environments is challenging...
+      Offline reinforcement learning (RL) in sparse, long-horizon environments is challenging because value estimation
+      errors compound over long backup horizons. While $n$-step returns mitigate long-horizon bias, they amplify return
+      variance, destabilizing offline learning. We propose <b style="color:#FF2D8E;">VAN-Flow</b>, a variance-averse
+      offline RL framework that combines multi-step learning with categorical distributional value estimation and
+      variance-aware target weighting.
     </p>
   </div>
 
+  <!-- ===== Why Variance-Averse Training is Needed? ===== -->
   <div class="section-divider"></div>
   <h2 class="fancy-title">Why Variance-Averse Training is Needed?</h2>
 
@@ -277,6 +382,32 @@
     <div class="caption">
       Offline RL performance on sparse-reward tasks under varying dataset return variance.
     </div>
+
+    <p>
+      Long-horizon decision-making under sparse rewards is notoriously challenging because informative feedback is
+      delayed and rarely observed, making value estimation highly susceptible to error propagation. This issue becomes
+      substantially more severe in offline RL, where learning is constrained to a fixed dataset with limited coverage.
+      Prior work identifies that this difficulty is driven by the <em>curse of horizon</em>, where bootstrapping errors
+      accumulate over long trajectories and degrade value accuracy. A common remedy is <em>value horizon reduction</em>,
+      most notably $n$-step returns, which shorten the effective backup horizon.
+    </p>
+
+    <p>
+      However, increasing the return horizon inevitably amplifies return variance, which can destabilize learning.
+      In offline RL, this effect is further exacerbated because larger $n$ aggregates rewards collected under diverse
+      behavior policies, yielding highly heterogeneous and high-variance return targets. As shown above, naively
+      applying $n$-step returns (FQL-n) works well when dataset variance is low (<b>navigate</b>, <b>play</b>) but can
+      become ineffective or even collapse under high-variance datasets (<b>explore</b>, <b>noisy</b>).
+      In contrast, <span class="tag-proposed">variance-averse training</span> stabilizes learning by downweighting
+      unreliable high-variance return targets, consistently recovering the benefits of long-horizon returns.
+    </p>
+
+    <p>
+      These results suggest that the effectiveness of $n$-step returns in offline RL is fundamentally determined by
+      how return variance is controlled. VAN-Flow explicitly models return uncertainty with a distributional critic,
+      enabling variance-aware learning that preserves the bias-reduction benefits of $n$-step returns without suffering
+      from variance amplification.
+    </p>
   </div>
 
   <div class="footer" style="max-width:900px;margin:0 auto 40px auto;padding:0 20px;color:#777;font-size:13px;text-align:center;">
