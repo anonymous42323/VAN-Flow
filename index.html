@@ -238,25 +238,85 @@
       .card-img { aspect-ratio: 4 / 3; }
     }
 
+    /* ===== Method Layout ===== */
     .method-stack {
       max-width: 1300px;
       margin: 0 auto 80px auto;
       padding: 0 20px;
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 40px;
     }
     
-    /* Method 전용 카드 이미지는 파이프라인 느낌으로 와이드하게 */
-    .method-stack .card-img {
-      aspect-ratio: 21 / 9;
+    .method-block-title {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    
+    .method-block-title .accent {
+      color: #FF2D8E;
+    }
+    
+    /* 내부 좌우 분할 */
+    .method-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
     }
     
     @media (max-width: 1000px) {
-      .method-stack .card-img {
-        aspect-ratio: 16 / 9;
+      .method-inner {
+        grid-template-columns: 1fr;
       }
     }
+    
+    /* ===== LEFT: Image Card (white) ===== */
+    .method-img-card {
+      background: #ffffff;
+      border: 1px solid #e6e6e6;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+    
+    .method-img-card .card-img {
+      aspect-ratio: 16 / 9;
+      background: #f7f7f7;
+      border-bottom: 1px solid #eeeeee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    
+    .method-img-card img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    
+    /* ===== RIGHT: Video Card (black frame) ===== */
+    .method-video-card {
+      background: #ffffff;
+      border: 2px solid #111;   /* 🔥 검정 테두리 */
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    
+    .method-video-frame {
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+    
+    .method-video-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+        
   </style>
 
   <script>
@@ -403,58 +463,88 @@
     <!-- VAN-FLOW METHOD -->
     <div class="section-divider"></div>
     <h2 class="fancy-title">
-      <b style="color:#FF2D8E;">VAN-Flow</b>: Variance-Averse $n$-Step Return with Flow-Matching
+      <b style="color:#FF2D8E;">VAN-Flow</b>: Variance-Averse $n$-Step Return with Flow-Based Actor
     </h2>
     
     <div class="method-stack">
     
-      <!-- 🔷 Block 1: Categorical Critic -->
-      <div class="card">
-        <div class="card-img">
-          <img src="assets/image/categorical_critic.png" alt="Categorical critic">
-        </div>
-        <div class="card-body">
-          <div class="card-title">Categorical Distributional Critic</div>
-          <p style="margin:0;color:#333;">
-            VAN-Flow models the $n$-step return target as a categorical distribution and applies a
-            variance-averse expectation to downweight unreliable high-variance targets. This enables
-            uncertainty-aware value estimation and stabilizes multi-step learning under heterogeneous
-            offline datasets.
-          </p>
+      <!-- 🔷 BLOCK 1: Categorical Critic -->
+      <div>
+        <div class="method-block-title"><span class="accent">Categorical</span> Critic</div>
+    
+        <div class="method-inner">
+    
+          <!-- LEFT: Image -->
+          <div class="method-img-card">
+            <div class="card-img">
+              <img src="assets/image/categorical_critic.png" alt="Categorical critic">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Categorical Distributional Critic</div>
+              <p style="margin:0;color:#333;">
+                VAN-Flow represents the $n$-step return target as a categorical distribution and applies a
+                variance-averse expectation to stabilize value learning under heterogeneous offline data.
+              </p>
+            </div>
+          </div>
+    
+          <!-- RIGHT: Video -->
+          <div class="method-video-card">
+            <div class="method-video-frame">
+              <video autoplay loop muted playsinline preload="metadata">
+                <source src="assets/video/critic_demo.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="card-body">
+              <div class="card-title">Variance-Aware Value Behavior</div>
+              <p style="margin:0;color:#333;">
+                Visualization of how the variance-averse critic suppresses unreliable high-variance targets.
+              </p>
+            </div>
+          </div>
+    
         </div>
       </div>
     
-      <!-- 🔷 Block 2: Flow-Matching Policy -->
-      <div class="card">
-        <div class="card-img">
-          <img src="assets/image/flow_matching.png" alt="Flow matching policy">
-        </div>
-        <div class="card-body">
-          <div class="card-title">Q-Guided Flow-Matching Policy</div>
-          <p style="margin:0;color:#333;">
-            The policy is trained via Q-guided flow matching, aligning action generation with high-value
-            regions of the learned return distribution. This enables stable generative policy learning
-            while leveraging the critic’s uncertainty-aware guidance.
-          </p>
-        </div>
-      </div>
+      <!-- 🔷 BLOCK 2: Flow-Based Actor -->
+      <div>
+        <div class="method-block-title"><span class="accent">Flow-Based</span> Actor</div>
     
-      <!-- 🔷 Block 3: Rejection / OOD Control -->
-      <div class="card">
-        <div class="card-img">
-          <img src="assets/image/rejection_sampling.png" alt="Rejection sampling">
-        </div>
-        <div class="card-body">
-          <div class="card-title">Rejection Sampling for Offline Robustness</div>
-          <p style="margin:0;color:#333;">
-            Rejection sampling filters out out-of-distribution actions during policy deployment,
-            preventing value extrapolation errors and improving robustness in purely offline settings.
-          </p>
+        <div class="method-inner">
+    
+          <!-- LEFT: Image -->
+          <div class="method-img-card">
+            <div class="card-img">
+              <img src="assets/image/flow_matching.png" alt="Flow-based actor">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Q-Guided Flow Matching</div>
+              <p style="margin:0;color:#333;">
+                The actor is trained via flow matching guided by critic values, aligning generated actions
+                with high-value regions of the learned return distribution.
+              </p>
+            </div>
+          </div>
+    
+          <!-- RIGHT: Video -->
+          <div class="method-video-card">
+            <div class="method-video-frame">
+              <video autoplay loop muted playsinline preload="metadata">
+                <source src="assets/video/actor_demo.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="card-body">
+              <div class="card-title">Flow Policy with OOD Filtering</div>
+              <p style="margin:0;color:#333;">
+                Demonstration of flow-based action generation with rejection sampling for OOD safety.
+              </p>
+            </div>
+          </div>
+    
         </div>
       </div>
     
     </div>
-
 
   
 </body>
