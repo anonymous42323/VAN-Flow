@@ -180,9 +180,13 @@
       margin: 70px 0 40px 0;
     }
 
-    /* ===========================
-       Two-column card layout
-       =========================== */
+    @media (max-width: 1000px) {
+      .pair-header-row { grid-template-columns: 1fr; gap: 8px; }
+      .pair-title { grid-column: auto; }
+      .mid-gap, .pair-sep { display: none; }
+      .video-grid { grid-template-columns: 1fr; gap: 18px; }
+      .hero h1 { font-size: 34px; }
+    }
     .two-col {
       max-width: 1300px;
       margin: 0 auto 70px auto;
@@ -194,13 +198,12 @@
     
     .card {
       background: #fff;
-      border: 1px solid rgba(255, 45, 142, 0.25);
+      border: 1px solid #e6e6e6;
       border-radius: 18px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.04);
       overflow: hidden;
     }
     
-    /* ✅ Image fits box without cropping */
     .card-img {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -209,7 +212,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px;
+      padding: 10px;              /* 여백 추가 (선택) */
     }
     
     .card-img img {
@@ -217,10 +220,8 @@
       max-height: 100%;
       width: auto;
       height: auto;
-      object-fit: contain;
-      display: block;
+      object-fit: contain;        /* ✅ 이미지 전체 보이도록 */
     }
-    
     .card-body {
       padding: 20px 22px 22px 22px;
     }
@@ -231,13 +232,8 @@
       font-weight: 900;
       letter-spacing: -0.2px;
     }
-
+    
     @media (max-width: 1000px) {
-      .pair-header-row { grid-template-columns: 1fr; gap: 8px; }
-      .pair-title { grid-column: auto; }
-      .mid-gap, .pair-sep { display: none; }
-      .video-grid { grid-template-columns: 1fr; gap: 18px; }
-      .hero h1 { font-size: 34px; }
       .two-col { grid-template-columns: 1fr; }
       .card-img { aspect-ratio: 4 / 3; }
     }
@@ -267,7 +263,7 @@
     </div>
   </div>
 
-  <!-- 💡 Highlight Box -->
+  <!-- 💡 MOVED HIGHLIGHT BOX HERE -->
   <div class="highlight-box">
     The $n$-step return with a <span class="emph">variance-averse expectation</span> effectively addresses the challenges of long-horizon, sparse-reward environments in offline RL.
   </div>
@@ -328,7 +324,7 @@
   <div class="section-divider"></div>
   <h2 class="fancy-title">Abstract</h2>
 
-  <!-- 🧾 ABSTRACT IN BOX -->
+  <!-- 🧾 ABSTRACT IN GRAY BOX -->
   <div class="abstract-box">
     Offline reinforcement learning (RL) in sparse, long-horizon environments is challenging because 
     value estimation errors compound over long backup horizons, and offline datasets often provide 
@@ -345,54 +341,6 @@
     Notably, VAN-Flow shows remarkable improvements on challenging datasets with heterogeneous behavior data.
   </div>
 
-  <!-- ✅ NEW SECTION: VAN-Flow components -->
-  <div class="section-divider"></div>
-  <h2 class="fancy-title">VAN-Flow: Variance-Averse $n$-Step Return with Flow-Matching</h2>
-
-  <div class="two-col">
-
-    <!-- LEFT: Categorical Critic -->
-    <div class="card">
-      <div class="card-img">
-        <img src="assets/image/categorical_critic.png" alt="Categorical Critic Diagram">
-      </div>
-      <div class="card-body">
-        <div class="card-title">Categorical Critic</div>
-        <ul style="margin:0; padding-left:18px; color:#333; line-height:1.7;">
-          <li>
-            <b>Return Variance Capture</b><br>
-            Categorical distributional value estimation explicitly models return uncertainty and captures variance across $n$-step targets.
-          </li>
-          <li style="margin-top:10px;">
-            <b>$n$-step TD-based Training</b><br>
-            The critic is trained with $n$-step temporal difference learning to reduce long-horizon bias while maintaining stable value propagation.
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- RIGHT: Flow-based Actor -->
-    <div class="card">
-      <div class="card-img">
-        <img src="assets/image/flow_actor.png" alt="Flow-Based Actor Diagram">
-      </div>
-      <div class="card-body">
-        <div class="card-title">Flow-Based Actor</div>
-        <ul style="margin:0; padding-left:18px; color:#333; line-height:1.7;">
-          <li>
-            <b>Variance-Averse $Q$-Guidance</b><br>
-            The policy is guided by variance-averse value estimates, steering actions toward reliable high-value regions.
-          </li>
-          <li style="margin-top:10px;">
-            <b>Rejection Sampling</b><br>
-            Action samples are filtered to prevent out-of-distribution behaviors, improving offline policy stability.
-          </li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-
   <div class="section-divider"></div>
   <h2 class="fancy-title">Variance-Averse Expectation</h2>
   
@@ -404,6 +352,8 @@
       </div>
       <div class="card-body">
         <div class="card-title">Why Variance-Averse is Needed?</div>
+  
+        <!-- 여기에 왼쪽 설명 텍스트 넣으면 됨 -->
         <p style="margin:0;color:#333;">
           Long-horizon decision-making under sparse rewards is challenging because informative feedback is delayed and
           rarely observed, making value estimation susceptible to error propagation. This becomes more severe in offline RL
@@ -419,6 +369,8 @@
       </div>
       <div class="card-body">
         <div class="card-title">Variance-Averse Expectation</div>
+  
+        <!-- 여기에 오른쪽 설명 텍스트 넣으면 됨 -->
         <p style="margin:0;color:#333;">
           VAN-Flow introduces a variance-averse expectation that downweights unreliable high-variance $n$-step return targets
           using a categorical distributional critic, preserving bias-reduction benefits while preventing variance-induced
@@ -428,5 +380,46 @@
     </div>
   </div>
 
+      <!-- VAN-FLOW -->
+    <div class="section-divider"></div>
+  <h2 class="fancy-title"><b style="color:#FF2D8E;">VAN-Flow</b>: Variance-Averse $n$-step Return with Flow-Matching</h2>
+  
+  <div class="two-col">
+    <!-- LEFT CARD -->
+    <div class="card">
+      <div class="card-img">
+        <img src="assets/image/why_variance_averse.png" alt="Why variance-averse is needed">
+      </div>
+      <div class="card-body">
+        <div class="card-title">Why Variance-Averse is Needed?</div>
+  
+        <!-- 여기에 왼쪽 설명 텍스트 넣으면 됨 -->
+        <p style="margin:0;color:#333;">
+          Long-horizon decision-making under sparse rewards is challenging because informative feedback is delayed and
+          rarely observed, making value estimation susceptible to error propagation. This becomes more severe in offline RL
+          due to limited dataset coverage and heterogeneous behavior policies.
+        </p>
+      </div>
+    </div>
+  
+    <!-- RIGHT CARD -->
+    <div class="card">
+      <div class="card-img">
+        <img src="assets/image/VaE.png" alt="Variance-averse expectation">
+      </div>
+      <div class="card-body">
+        <div class="card-title">Variance-Averse Expectation</div>
+  
+        <!-- 여기에 오른쪽 설명 텍스트 넣으면 됨 -->
+        <p style="margin:0;color:#333;">
+          VAN-Flow introduces a variance-averse expectation that downweights unreliable high-variance $n$-step return targets
+          using a categorical distributional critic, preserving bias-reduction benefits while preventing variance-induced
+          instability.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  
 </body>
 </html>
