@@ -73,7 +73,7 @@
       background: #FF2D8E;
     }
 
-    /* 🔥 Highlight Box (Moved Up) */
+    /* 🔥 Highlight Box */
     .highlight-box{
       margin: 40px auto 50px auto;
       max-width: 1200px;
@@ -187,6 +187,8 @@
       .video-grid { grid-template-columns: 1fr; gap: 18px; }
       .hero h1 { font-size: 34px; }
     }
+
+    /* ===== Two-col cards (used in Variance-Averse Expectation section) ===== */
     .two-col {
       max-width: 1300px;
       margin: 0 auto 70px auto;
@@ -212,7 +214,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px;              /* 여백 추가 (선택) */
+      padding: 10px;
     }
     
     .card-img img {
@@ -220,8 +222,9 @@
       max-height: 100%;
       width: auto;
       height: auto;
-      object-fit: contain;        /* ✅ 이미지 전체 보이도록 */
+      object-fit: contain;
     }
+
     .card-body {
       padding: 20px 22px 22px 22px;
     }
@@ -238,87 +241,103 @@
       .card-img { aspect-ratio: 4 / 3; }
     }
 
-    /* ===== Method Layout ===== */
-    .method-stack {
+    /* ===== Method Block (your screenshot style) ===== */
+    .method-wrap {
       max-width: 1300px;
-      margin: 0 auto 80px auto;
+      margin: 0 auto 70px auto;
       padding: 0 20px;
+    }
+
+    .method-title {
+      font-size: 26px;
+      font-weight: 900;
+      margin: 0 0 14px 6px;
+      letter-spacing: -0.2px;
+    }
+
+    .method-title .accent { color: #FF2D8E; }
+
+    .method-panel {
+      background: #f5f5f5;
+      border: 1px solid #e6e6e6;
+      border-radius: 28px;
+      padding: 18px;
+    }
+
+    .method-row {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr; /* left a bit wider */
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .method-left {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 12px;
+      min-height: 420px;
     }
-    
-    .method-block-title {
-      font-size: 24px;
-      font-weight: 900;
-      margin-bottom: 10px;
-    }
-    
-    .method-block-title .accent {
-      color: #FF2D8E;
-    }
-    
-    /* 내부 좌우 분할 */
-    .method-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-    }
-    
-    @media (max-width: 1000px) {
-      .method-inner {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    /* ===== LEFT: Image Card (white) ===== */
-    .method-img-card {
+
+    .method-left .img-box {
       background: #ffffff;
-      border: 1px solid #e6e6e6;
+      border: 1px solid #ededed;
       border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      overflow: hidden;
-    }
-    
-    .method-img-card .card-img {
-      aspect-ratio: 16 / 9;
-      background: #f7f7f7;
-      border-bottom: 1px solid #eeeeee;
+      padding: 14px;
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px;
+      overflow: hidden;
     }
-    
-    .method-img-card img {
+
+    .method-left .img-box img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
     }
-    
-    /* ===== RIGHT: Video Card (black frame) ===== */
-    .method-video-card {
+
+    .method-left .text-box {
       background: #ffffff;
-      border: 2px solid #111;   /* 🔥 검정 테두리 */
+      border: 1px solid #ededed;
       border-radius: 18px;
-      overflow: hidden;
+      padding: 16px 18px;
     }
-    
-    .method-video-frame {
-      aspect-ratio: 16 / 9;
+
+    .method-left .text-box .h {
+      font-size: 18px;
+      font-weight: 900;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.2px;
+    }
+
+    .method-left .text-box p {
+      margin: 0;
+      color: #333;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .method-right {
       background: #000;
+      border: 3px solid #111;
+      border-radius: 22px;
+      overflow: hidden;
+      display: flex;
+      min-height: 420px;
     }
-    
-    .method-video-frame video {
+
+    .method-right video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-    
-        
-  </style>
 
+    @media (max-width: 1000px) {
+      .method-row { grid-template-columns: 1fr; }
+      .method-left, .method-right { min-height: 320px; }
+    }
+  </style>
   <script>
     window.MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
@@ -460,86 +479,73 @@
     </div>
   </div>
 
-    <!-- VAN-FLOW METHOD -->
-    <div class="section-divider"></div>
-    <h2 class="fancy-title">
-      <b style="color:#FF2D8E;">VAN-Flow</b>: Variance-Averse $n$-Step Return with Flow-Based Actor
-    </h2>
+      <!-- ===== VAN-FLOW METHOD (your screenshot style) ===== -->
+      <div class="section-divider"></div>
+      <h2 class="fancy-title"><b style="color:#FF2D8E;">VAN-Flow</b>: Categorical Critic & Flow-based Actor</h2>
     
-    <div class="method-stack">
+      <!-- Block 1 -->
+      <div class="method-wrap">
+        <div class="method-title"><span class="accent">Categorical</span> Critic</div>
     
-      <!-- 🔷 BLOCK 1: Categorical Critic -->
-      <div>
-        <div class="method-block-title"><span class="accent">Categorical</span> Critic</div>
+        <div class="method-panel">
+          <div class="method-row">
     
-        <div class="method-inner">
+            <div class="method-left">
+              <div class="img-box">
+                <img src="assets/image/categorical_critic.png" alt="Categorical critic image">
+              </div>
     
-          <!-- LEFT: Image -->
-          <div class="method-img-card">
-            <div class="card-img">
-              <img src="assets/image/categorical_critic.png" alt="Categorical critic">
+              <div class="text-box">
+                <div class="h">Categorical Distributional Critic</div>
+                <p>
+                  VAN-Flow represents the $n$-step return target as a categorical distribution and applies a
+                  variance-averse expectation to stabilize value learning under heterogeneous offline data.
+                </p>
+              </div>
             </div>
-            <div class="card-body">
-              <div class="card-title">Categorical Distributional Critic</div>
-              <p style="margin:0;color:#333;">
-                VAN-Flow represents the $n$-step return target as a categorical distribution and applies a
-                variance-averse expectation to stabilize value learning under heterogeneous offline data.
-              </p>
-            </div>
-          </div>
     
-          <!-- RIGHT: Video -->
-          <div class="method-video-card">
-            <div class="method-video-frame">
+            <div class="method-right">
               <video autoplay loop muted playsinline preload="metadata">
+                <!-- TODO: replace with your critic video -->
                 <source src="assets/video/critic_demo.mp4" type="video/mp4">
               </video>
             </div>
-            <div class="card-body">
-              <div class="card-title">Variance-Aware Value Behavior</div>
-              <p style="margin:0;color:#333;">
-                Visualization of how the variance-averse critic suppresses unreliable high-variance targets.
-              </p>
-            </div>
-          </div>
     
+          </div>
         </div>
       </div>
     
-      <!-- 🔷 BLOCK 2: Flow-Based Actor -->
-      <div>
-        <div class="method-block-title"><span class="accent">Flow-Based</span> Actor</div>
+      <!-- Block 2 -->
+      <div class="method-wrap">
+        <div class="method-title"><span class="accent">Flow-based</span> Actor</div>
     
-        <div class="method-inner">
+        <div class="method-panel">
+          <div class="method-row">
     
-          <!-- LEFT: Image -->
-          <div class="method-img-card">
-            <div class="card-img">
-              <img src="assets/image/flow_matching.png" alt="Flow-based actor">
+            <div class="method-left">
+              <div class="img-box">
+                <img src="assets/image/flow_matching.png" alt="Flow actor image">
+              </div>
+    
+              <div class="text-box">
+                <div class="h">Flow-based Actor</div>
+                <p>
+                  The actor is trained via flow matching guided by the critic, aligning action generation
+                  with high-value regions and improving robustness in offline RL.
+                </p>
+              </div>
             </div>
-            <div class="card-body">
-              <div class="card-title">Q-Guided Flow Matching</div>
-              <p style="margin:0;color:#333;">
-                The actor is trained via flow matching guided by critic values, aligning generated actions
-                with high-value regions of the learned return distribution.
-              </p>
-            </div>
-          </div>
     
-          <!-- RIGHT: Video -->
-          <div class="method-video-card">
-            <div class="method-video-frame">
+            <div class="method-right">
               <video autoplay loop muted playsinline preload="metadata">
+                <!-- TODO: replace with your actor video -->
                 <source src="assets/video/actor_demo.mp4" type="video/mp4">
               </video>
             </div>
-            <div class="card-body">
-              <div class="card-title">Flow Policy with OOD Filtering</div>
-              <p style="margin:0;color:#333;">
-                Demonstration of flow-based action generation with rejection sampling for OOD safety.
-              </p>
-            </div>
+    
           </div>
+        </div>
+      </div>
     
         </div>
       </div>
