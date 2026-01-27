@@ -380,6 +380,45 @@
     </div>
   </div>
 
+      <!-- VAN-FLOW -->
+    <div class="section-divider"></div>
+  <h2 class="fancy-title"><b style="color:#FF2D8E;">VAN-Flow</b>: Variance-Averse $n$-step Return with Flow-Matching</h2>
+  
+  <div class="two-col">
+    <!-- LEFT CARD -->
+    <div class="card">
+      <div class="card-img">
+        <img src="assets/image/why_variance_averse.png" alt="Why variance-averse is needed">
+      </div>
+      <div class="card-body">
+        <div class="card-title">Why Variance-Averse is Needed?</div>
+  
+        <!-- 여기에 왼쪽 설명 텍스트 넣으면 됨 -->
+        <p style="margin:0;color:#333;">
+          Long-horizon decision-making under sparse rewards is challenging because informative feedback is delayed and
+          rarely observed, making value estimation susceptible to error propagation. This becomes more severe in offline RL
+          due to limited dataset coverage and heterogeneous behavior policies.
+        </p>
+      </div>
+    </div>
+  
+    <!-- RIGHT CARD -->
+    <div class="card">
+      <div class="card-img">
+        <img src="assets/image/VaE.png" alt="Variance-averse expectation">
+      </div>
+      <div class="card-body">
+        <div class="card-title">Variance-Averse Expectation</div>
+  
+        <!-- 여기에 오른쪽 설명 텍스트 넣으면 됨 -->
+        <p style="margin:0;color:#333;">
+          VAN-Flow introduces a variance-averse expectation that downweights unreliable high-variance $n$-step return targets
+          using a categorical distributional critic, preserving bias-reduction benefits while preventing variance-induced
+          instability.
+        </p>
+      </div>
+    </div>
+  </div>
 
   
 </body>
