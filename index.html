@@ -62,7 +62,7 @@
       letter-spacing: -0.5px;
       position: relative;
     }
-    
+
     .fancy-title::after {
       content: "";
       display: block;
@@ -102,15 +102,6 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
       line-height: 1.75;
       font-size: 0.95rem;
-    }
-
-    .intro-lead{
-      text-align: center;
-      font-size: 16px;
-      color: #444;
-      max-width: 900px;
-      margin: 0 auto 60px auto;
-      padding: 0 20px;
     }
 
     .pair-header-row {
@@ -188,7 +179,7 @@
       .hero h1 { font-size: 34px; }
     }
 
-    /* ===== Two-col cards (used in Variance-Averse Expectation section) ===== */
+    /* ===== Two-col cards ===== */
     .two-col {
       max-width: 1300px;
       margin: 0 auto 70px auto;
@@ -197,7 +188,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 22px;
     }
-    
+
     .card {
       background: #fff;
       border: 1px solid #e6e6e6;
@@ -205,7 +196,7 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.04);
       overflow: hidden;
     }
-    
+
     .card-img {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -216,7 +207,7 @@
       justify-content: center;
       padding: 10px;
     }
-    
+
     .card-img img {
       max-width: 100%;
       max-height: 100%;
@@ -228,20 +219,20 @@
     .card-body {
       padding: 20px 22px 22px 22px;
     }
-    
+
     .card-title {
       margin: 0 0 10px 0;
       font-size: 22px;
       font-weight: 900;
       letter-spacing: -0.2px;
     }
-    
+
     @media (max-width: 1000px) {
       .two-col { grid-template-columns: 1fr; }
       .card-img { aspect-ratio: 4 / 3; }
     }
 
-    /* ===== Method Block (your screenshot style) ===== */
+    /* ===== Method Block (screenshot style) ===== */
     .method-wrap {
       max-width: 1300px;
       margin: 0 auto 70px auto;
@@ -266,7 +257,7 @@
 
     .method-row {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr; /* left a bit wider */
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 18px;
       align-items: stretch;
     }
@@ -337,7 +328,52 @@
       .method-row { grid-template-columns: 1fr; }
       .method-left, .method-right { min-height: 320px; }
     }
+
+    /* ===== Simulation Results ===== */
+    .qa {
+      max-width: 1300px;
+      margin: 0 auto 22px auto;
+      padding: 0 20px;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.2px;
+      line-height: 1.35;
+    }
+
+    .qa .qtag { font-weight: 900; }
+    .qa .magenta { color: #FF2D8E; font-weight: 900; }
+
+    .result-card {
+      max-width: 1300px;
+      margin: 0 auto 55px auto;
+      padding: 0 20px;
+    }
+
+    .table-frame {
+      background: #ffffff;
+      border: 1px solid #e6e6e6;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+
+    .table-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .table-caption {
+      padding: 14px 18px 16px 18px;
+      border-top: 1px solid #eeeeee;
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .table-caption b { color: #111; }
   </style>
+  
   <script>
     window.MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
@@ -542,11 +578,58 @@
                 <source src="assets/video/actor_demo.mp4" type="video/mp4">
               </video>
             </div>
-    
           </div>
         </div>
       </div>
-    
+
+    <!-- ===== Simulation Results ===== -->
+  <div class="section-divider"></div>
+  <h2 class="fancy-title">Simulation Results</h2>
+
+  <!-- Q1 -->
+  <div class="qa">
+    <span class="qtag">[<b>Q1.</b>]</span>
+    Does the <span class="magenta">variance-averse expectation</span> enhance RL performance in sparse-reward and long-horizon environments?
+  </div>
+  <div class="result-card">
+    <div class="table-frame">
+      <!-- ✅ Put your rendered table image here -->
+      <img src="assets/image/table_antmaze_results.png" alt="AntMaze results table">
+      <div class="table-caption">
+        <b>Offline performance on AntMaze tasks.</b> Scores are normalized following the D4RL protocol.
+        Entries marked “--” indicate results not reported in prior work.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="qa">
+    <span class="qtag">[<b>Q2.</b>]</span>
+    Does the proposed solution outperform existing <b><i>flow-based policies</i></b>?
+  </div>
+  <div class="result-card">
+    <div class="table-frame">
+      <img src="assets/image/table_ogbench_results.png" alt="OGBench results table">
+      <div class="table-caption">
+        <b>Performance comparison in OGBench.</b> Task-wise scores across Gaussian-based and Flow-based baselines.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="qa">
+    <span class="qtag">[<b>Q3.</b>]</span>
+    Does <b style="color:#FF2D8E;">VAN-Flow</b> have strong generalization ability in off-to-online adaptation?
+  </div>
+  <div class="result-card">
+    <div class="table-frame">
+      <img src="assets/image/table_off2on_results.png" alt="Offline-to-online results table">
+      <div class="table-caption">
+        <b>Offline-to-online fine-tuning performance.</b> Gray indicates offline performance before fine-tuning and bold indicates after fine-tuning.
+      </div>
+    </div>
+  </div>
+
         </div>
       </div>
     
