@@ -237,6 +237,26 @@
       .two-col { grid-template-columns: 1fr; }
       .card-img { aspect-ratio: 4 / 3; }
     }
+
+    .method-stack {
+      max-width: 1300px;
+      margin: 0 auto 80px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    
+    /* Method 전용 카드 이미지는 파이프라인 느낌으로 와이드하게 */
+    .method-stack .card-img {
+      aspect-ratio: 21 / 9;
+    }
+    
+    @media (max-width: 1000px) {
+      .method-stack .card-img {
+        aspect-ratio: 16 / 9;
+      }
+    }
   </style>
 
   <script>
@@ -380,45 +400,61 @@
     </div>
   </div>
 
-      <!-- VAN-FLOW -->
+    <!-- VAN-FLOW METHOD -->
     <div class="section-divider"></div>
-  <h2 class="fancy-title"><b style="color:#FF2D8E;">VAN-Flow</b>: Variance-Averse $n$-step Return with Flow-Matching</h2>
-  
-  <div class="two-col">
-    <!-- LEFT CARD -->
-    <div class="card">
-      <div class="card-img">
-        <img src="assets/image/why_variance_averse.png" alt="Why variance-averse is needed">
+    <h2 class="fancy-title">
+      <b style="color:#FF2D8E;">VAN-Flow</b>: Variance-Averse $n$-Step Return with Flow-Matching
+    </h2>
+    
+    <div class="method-stack">
+    
+      <!-- 🔷 Block 1: Categorical Critic -->
+      <div class="card">
+        <div class="card-img">
+          <img src="assets/image/categorical_critic.png" alt="Categorical critic">
+        </div>
+        <div class="card-body">
+          <div class="card-title">Categorical Distributional Critic</div>
+          <p style="margin:0;color:#333;">
+            VAN-Flow models the $n$-step return target as a categorical distribution and applies a
+            variance-averse expectation to downweight unreliable high-variance targets. This enables
+            uncertainty-aware value estimation and stabilizes multi-step learning under heterogeneous
+            offline datasets.
+          </p>
+        </div>
       </div>
-      <div class="card-body">
-        <div class="card-title">Why Variance-Averse is Needed?</div>
-  
-        <!-- 여기에 왼쪽 설명 텍스트 넣으면 됨 -->
-        <p style="margin:0;color:#333;">
-          Long-horizon decision-making under sparse rewards is challenging because informative feedback is delayed and
-          rarely observed, making value estimation susceptible to error propagation. This becomes more severe in offline RL
-          due to limited dataset coverage and heterogeneous behavior policies.
-        </p>
+    
+      <!-- 🔷 Block 2: Flow-Matching Policy -->
+      <div class="card">
+        <div class="card-img">
+          <img src="assets/image/flow_matching.png" alt="Flow matching policy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">Q-Guided Flow-Matching Policy</div>
+          <p style="margin:0;color:#333;">
+            The policy is trained via Q-guided flow matching, aligning action generation with high-value
+            regions of the learned return distribution. This enables stable generative policy learning
+            while leveraging the critic’s uncertainty-aware guidance.
+          </p>
+        </div>
       </div>
+    
+      <!-- 🔷 Block 3: Rejection / OOD Control -->
+      <div class="card">
+        <div class="card-img">
+          <img src="assets/image/rejection_sampling.png" alt="Rejection sampling">
+        </div>
+        <div class="card-body">
+          <div class="card-title">Rejection Sampling for Offline Robustness</div>
+          <p style="margin:0;color:#333;">
+            Rejection sampling filters out out-of-distribution actions during policy deployment,
+            preventing value extrapolation errors and improving robustness in purely offline settings.
+          </p>
+        </div>
+      </div>
+    
     </div>
-  
-    <!-- RIGHT CARD -->
-    <div class="card">
-      <div class="card-img">
-        <img src="assets/image/VaE.png" alt="Variance-averse expectation">
-      </div>
-      <div class="card-body">
-        <div class="card-title">Variance-Averse Expectation</div>
-  
-        <!-- 여기에 오른쪽 설명 텍스트 넣으면 됨 -->
-        <p style="margin:0;color:#333;">
-          VAN-Flow introduces a variance-averse expectation that downweights unreliable high-variance $n$-step return targets
-          using a categorical distributional critic, preserving bias-reduction benefits while preventing variance-induced
-          instability.
-        </p>
-      </div>
-    </div>
-  </div>
+
 
   
 </body>
