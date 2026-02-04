@@ -403,58 +403,41 @@
     The $n$-step return with a <span class="emph">variance-averse expectation</span> effectively addresses the challenges of long-horizon, sparse-reward environments in offline RL.
   </div>
 
-  <!-- 🎥 QUALITATIVE RESULTS -->
-  <div class="video-section">
-    <div class="pair-header-row">
-      <div class="pair-title">AntMaze-Play</div>
-      <div class="mid-gap"></div>
-      <div class="pair-title">AntMaze-Explore</div>
-    </div>
+  <!-- 🎥 QUALITATIVE RESULTS (2 VIDEOS ONLY) -->
+<div class="video-section">
 
-    <div class="video-grid">
-      <div class="video-card">
-        <p class="tag-baseline">FQL-n</p>
-        <div class="video-frame">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="assets/video/ant_teleport" type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      <div class="pair-sep"></div>
-
-      <div class="video-card">
-        <p class="tag-proposed">VAN-Flow (Ours)</p>
-        <div class="video-frame">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="assets/video/ant_teleport.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      <div class="mid-gap"></div>
-
-      <div class="video-card">
-        <p class="tag-baseline">FQL-n</p>
-        <div class="video-frame">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="assets/video/puzzle_3x3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      <div class="pair-sep"></div>
-
-      <div class="video-card">
-        <p class="tag-proposed">VAN-Flow (Ours)</p>
-        <div class="video-frame">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="assets/video/puzzle_3x3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
+  <div class="pair-header-row" style="grid-template-columns: 1fr 60px 1fr;">
+    <div class="pair-title">Baseline</div>
+    <div></div>
+    <div class="pair-title">VAN-Flow (Ours)</div>
   </div>
+
+  <div class="video-grid" style="grid-template-columns: 1fr 60px 1fr;">
+
+    <!-- Baseline Video -->
+    <div class="video-card">
+      <p class="tag-baseline">FQL-n</p>
+      <div class="video-frame">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="assets/video/ant_teleport.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <div class="pair-sep"></div>
+
+    <!-- Ours Video -->
+    <div class="video-card">
+      <p class="tag-proposed">VAN-Flow</p>
+      <div class="video-frame">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="assets/video/puzzle_3x3.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+  </div>
+</div>
 
   <div class="section-divider"></div>
   <h2 class="fancy-title">Abstract</h2>
