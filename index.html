@@ -16,141 +16,72 @@
       color: #111;
     }
 
-    .hero {
-      text-align: center;
-      margin-top: 60px;
-      margin-bottom: 10px;
-      padding: 0 16px;
-    }
-
-    .hero h1 {
-      font-size: 44px;
-      margin-bottom: 10px;
-      letter-spacing: -0.4px;
-    }
-
+    .hero { text-align: center; margin-top: 60px; margin-bottom: 10px; padding: 0 16px; }
+    .hero h1 { font-size: 44px; margin-bottom: 10px; letter-spacing: -0.4px; }
     .brand { font-weight: 800; color: #FF2D8E; }
 
     .buttons { margin-top: 18px; }
-
     .buttons a {
-      display: inline-block;
-      padding: 10px 18px;
-      margin: 6px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      text-decoration: none;
-      color: #111;
-      font-weight: 600;
-      background: #fff;
+      display: inline-block; padding: 10px 18px; margin: 6px;
+      border-radius: 10px; border: 1px solid #ddd;
+      text-decoration: none; color: #111; font-weight: 600; background: #fff;
     }
-
     .buttons a:hover { background: #f3f3f3; }
 
-    .section,
-    .video-section {
-      max-width: 1300px;
-      margin: 0 auto 70px auto;
-      padding: 0 20px;
+    .section-divider {
+      width: 100%; height: 1px; background: #e8e8e8;
+      margin: 70px 0 40px 0;
     }
 
     .fancy-title {
-      text-align: center;
-      font-size: 34px;
-      font-weight: 800;
-      margin: 80px 0 10px 0;
-      letter-spacing: -0.5px;
-      position: relative;
+      text-align: center; font-size: 34px; font-weight: 800;
+      margin: 80px 0 10px 0; letter-spacing: -0.5px; position: relative;
     }
-
     .fancy-title::after {
-      content: "";
-      display: block;
-      width: 80px;
-      height: 5px;
-      margin: 12px auto 0 auto;
-      border-radius: 3px;
-      background: #FF2D8E;
+      content: ""; display: block; width: 80px; height: 5px;
+      margin: 12px auto 0 auto; border-radius: 3px; background: #FF2D8E;
     }
 
-    /* 🔥 Highlight Box */
     .highlight-box{
-      margin: 40px auto 50px auto;
-      max-width: 1200px;
-      border-radius: 14px;
-      padding: 18px 22px;
+      margin: 40px auto 50px auto; max-width: 1200px;
+      border-radius: 14px; padding: 18px 22px;
       background: rgba(255, 45, 142, 0.08);
       border: 1px solid rgba(255, 45, 142, 0.25);
-      text-align: center;
-      font-weight: 700;
-      color: #111;
+      text-align: center; font-weight: 700; color: #111;
     }
 
-    .highlight-box .emph{
-      color: #FF2D8E;
-      font-weight: 900;
-    }
-
-    /* 🧾 Abstract Gray Box */
-    .abstract-box {
-      max-width: 1100px;
-      margin: 0 auto 60px auto;
-      padding: 32px 36px;
-      background: #ffffff;
-      border: 1px solid #e6e6e6;
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-      line-height: 1.75;
-      font-size: 0.95rem;
-    }
+    /* 🎥 VIDEO SECTION */
+    .video-section { max-width: 1200px; margin: 0 auto 70px auto; padding: 0 20px; }
 
     .pair-header-row {
       display: grid;
-      grid-template-columns: 1fr 1fr 78px 1fr 1fr;
+      grid-template-columns: 1fr 60px 1fr;
       align-items: end;
       margin-bottom: 10px;
-    }
-
-    .pair-title {
-      grid-column: span 2;
       text-align: center;
       font-weight: 800;
-      font-size: 16px;
     }
-
-    .mid-gap { width: 100%; }
 
     .video-grid {
       display: grid;
-      grid-template-columns: 1fr 22px 1fr 78px 1fr 22px 1fr;
+      grid-template-columns: 1fr 60px 1fr;
       align-items: start;
     }
 
     .pair-sep {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #cfcfcf;
-      font-weight: 800;
-      font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      color: #cfcfcf; font-weight: 800; font-size: 18px;
     }
-
     .pair-sep::before { content: "|"; }
 
     .video-card { text-align: center; }
-
-    .video-card p {
-      margin: 6px 0 8px 0;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
+    .video-card p { margin: 6px 0 8px 0; font-size: 14px; font-weight: 700; }
     .tag-proposed { color: #FF2D8E; }
     .tag-baseline { color: #444; }
 
     .video-frame {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 16 / 9;   /* 👈 자연스러운 영상 비율 */
       border-radius: 12px;
       border: 1px solid #eee;
       overflow: hidden;
@@ -160,220 +91,25 @@
     .video-frame video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;    /* 👈 영상 잘림 방지 */
       display: block;
-    }
-
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background: #e8e8e8;
-      margin: 70px 0 40px 0;
-    }
-
-    @media (max-width: 1000px) {
-      .pair-header-row { grid-template-columns: 1fr; gap: 8px; }
-      .pair-title { grid-column: auto; }
-      .mid-gap, .pair-sep { display: none; }
-      .video-grid { grid-template-columns: 1fr; gap: 18px; }
-      .hero h1 { font-size: 34px; }
-    }
-
-    /* ===== Two-col cards ===== */
-    .two-col {
-      max-width: 1300px;
-      margin: 0 auto 70px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-    }
-
-    .card {
-      background: #fff;
-      border: 1px solid #e6e6e6;
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      overflow: hidden;
-    }
-
-    .card-img {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #f6f6f6;
-      border-bottom: 1px solid #eeeeee;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
-    }
-
-    .card-img img {
-      max-width: 100%;
-      max-height: 100%;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-    }
-
-    .card-body {
-      padding: 20px 22px 22px 22px;
-    }
-
-    .card-title {
-      margin: 0 0 10px 0;
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -0.2px;
-    }
-
-    @media (max-width: 1000px) {
-      .two-col { grid-template-columns: 1fr; }
-      .card-img { aspect-ratio: 4 / 3; }
-    }
-
-    /* ===== Method Block (screenshot style) ===== */
-    .method-wrap {
-      max-width: 1300px;
-      margin: 0 auto 70px auto;
-      padding: 0 20px;
-    }
-
-    .method-title {
-      font-size: 26px;
-      font-weight: 900;
-      margin: 0 0 14px 6px;
-      letter-spacing: -0.2px;
-    }
-
-    .method-title .accent { color: #FF2D8E; }
-
-    .method-panel {
-      background: #f5f5f5;
-      border: 1px solid #e6e6e6;
-      border-radius: 28px;
-      padding: 18px;
-    }
-
-    .method-row {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .method-left {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-height: 420px;
-    }
-
-    .method-left .img-box {
-      background: #ffffff;
-      border: 1px solid #ededed;
-      border-radius: 18px;
-      padding: 14px;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .method-left .img-box img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    .method-left .text-box {
-      background: #ffffff;
-      border: 1px solid #ededed;
-      border-radius: 18px;
-      padding: 16px 18px;
-    }
-
-    .method-left .text-box .h {
-      font-size: 18px;
-      font-weight: 900;
-      margin: 0 0 8px 0;
-      letter-spacing: -0.2px;
-    }
-
-    .method-left .text-box p {
-      margin: 0;
-      color: #333;
-      line-height: 1.7;
-      font-size: 0.95rem;
-    }
-
-    .method-right {
       background: #000;
-      border: 3px solid #111;
-      border-radius: 22px;
-      overflow: hidden;
-      display: flex;
-      min-height: 420px;
     }
 
-    .method-right video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    @media (max-width: 900px) {
+      .video-grid { grid-template-columns: 1fr; gap: 18px; }
+      .pair-sep { display: none; }
     }
 
-    @media (max-width: 1000px) {
-      .method-row { grid-template-columns: 1fr; }
-      .method-left, .method-right { min-height: 320px; }
+    /* ABSTRACT BOX */
+    .abstract-box {
+      max-width: 1100px; margin: 0 auto 60px auto;
+      padding: 32px 36px; border: 1px solid #e6e6e6;
+      border-radius: 18px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      line-height: 1.75; font-size: 0.95rem;
     }
-
-    /* ===== Simulation Results ===== */
-    .qa {
-      max-width: 1300px;
-      margin: 0 auto 22px auto;
-      padding: 0 20px;
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -0.2px;
-      line-height: 1.35;
-    }
-
-    .qa .qtag { font-weight: 900; }
-    .qa .magenta { color: #FF2D8E; font-weight: 900; }
-
-    .result-card {
-      max-width: 1300px;
-      margin: 0 auto 55px auto;
-      padding: 0 20px;
-    }
-
-    .table-frame {
-      background: #ffffff;
-      border: 1px solid #e6e6e6;
-      border-radius: 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      overflow: hidden;
-    }
-
-    .table-frame img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .table-caption {
-      padding: 14px 18px 16px 18px;
-      border-top: 1px solid #eeeeee;
-      font-size: 0.95rem;
-      color: #444;
-      line-height: 1.6;
-    }
-
-    .table-caption b { color: #111; }
   </style>
-  
+
   <script>
     window.MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
@@ -398,47 +134,47 @@
     </div>
   </div>
 
-  <!-- 💡 MOVED HIGHLIGHT BOX HERE -->
   <div class="highlight-box">
-    The $n$-step return with a <span class="emph">variance-averse expectation</span> effectively addresses the challenges of long-horizon, sparse-reward environments in offline RL.
+    The $n$-step return with a <span style="color:#FF2D8E;font-weight:900;">variance-averse expectation</span>
+    effectively addresses long-horizon sparse-reward challenges in offline RL.
   </div>
 
-  <!-- 🎥 QUALITATIVE RESULTS (2 VIDEOS ONLY) -->
-<div class="video-section">
+  <!-- 🎥 QUALITATIVE RESULTS -->
+  <div class="video-section">
 
-  <div class="pair-header-row" style="grid-template-columns: 1fr 60px 1fr;">
-    <div class="pair-title">Baseline</div>
-    <div></div>
-    <div class="pair-title">VAN-Flow (Ours)</div>
-  </div>
-
-  <div class="video-grid" style="grid-template-columns: 1fr 60px 1fr;">
-
-    <!-- Baseline Video -->
-    <div class="video-card">
-      <p class="tag-baseline">FQL-n</p>
-      <div class="video-frame">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="assets/video/ant_teleport.mp4" type="video/mp4">
-        </video>
-      </div>
+    <div class="pair-header-row">
+      <div>Baseline</div>
+      <div></div>
+      <div>VAN-Flow (Ours)</div>
     </div>
 
-    <div class="pair-sep"></div>
+    <div class="video-grid">
 
-    <!-- Ours Video -->
-    <div class="video-card">
-      <p class="tag-proposed">VAN-Flow</p>
-      <div class="video-frame">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="assets/video/puzzle_3x3.mp4" type="video/mp4">
-        </video>
+      <!-- Baseline -->
+      <div class="video-card">
+        <p class="tag-baseline">FQL-n</p>
+        <div class="video-frame">
+          <video autoplay loop muted playsinline preload="metadata">
+            <source src="assets/video/ant_teleport.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
+
+      <div class="pair-sep"></div>
+
+      <!-- Ours -->
+      <div class="video-card">
+        <p class="tag-proposed">VAN-Flow</p>
+        <div class="video-frame">
+          <video autoplay loop muted playsinline preload="metadata">
+            <source src="assets/video/puzzle_3x3.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
     </div>
-
   </div>
-</div>
-
+  
   <div class="section-divider"></div>
   <h2 class="fancy-title">Abstract</h2>
 
