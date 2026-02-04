@@ -376,8 +376,9 @@
     .method-right video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;  /* ✅ cover -> contain (크롭 방지) */
       display: block;
+      background: #000;     /* ✅ 남는 여백 검정 */
     }
 
     @media (max-width: 1000px) {
