@@ -460,6 +460,28 @@
     The $n$-step return with a <span class="emph">variance-averse expectation</span> effectively addresses the challenges of long-horizon, sparse-reward environments in offline RL.
   </div>
 
+
+
+  <div class="section" style="max-width:1100px; margin: 0 auto 50px auto; padding: 0 20px;">
+    <div style="
+      background: #ffffff;
+      border: 1px solid #e6e6e6;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      overflow: hidden;
+    ">
+      <div style="padding: 14px; background: #fafafa; border-bottom: 1px solid #eee;">
+        <img src="assets/image/ve_compare.png" alt="VE comparison" style="width:100%; height:auto; display:block; border-radius:10px;">
+      </div>
+      <div style="padding: 18px 22px 20px 22px;">
+        <p style="margin:0; font-size:0.92rem; color:#333; line-height:1.7;">
+          <b>Effect of Variance-Averse Expectation on an inconsistently good $(s,a)$ pair.</b>
+          <b style="color:#6b7280;">Left:</b> Under the standard expectation $\mathbb{E}[Z]$, the return distribution spreads across a wide range, resulting in high variance (Var$[Z] = 138{,}806$).
+          <b style="color:#FF2D8E;">Right:</b> After applying the variance-averse expectation $\mathcal{E}(Z)$, the optimistic upper tail is downweighted, substantially reducing variance (Var$[Z] = 3{,}604$) — a <b style="color:#FF2D8E;">97% reduction</b>.
+        </p>
+      </div>
+    </div>
+  </div>
   <!-- 🎥 QUALITATIVE RESULTS (UPDATED: 2 VIDEOS, split labels inside) -->
   <div class="video-section">
     <div class="video-grid" style="grid-template-columns: 1fr 78px 1fr;">
