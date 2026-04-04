@@ -498,7 +498,103 @@
   </div>
 
 
-  <!-- 💡 MOVED HIGHLIGHT BOX HERE -->
+  <!-- ✅ Additional figures: Consistent Good & Consistent Poor -->
+  <div class="section" style="max-width:1100px; margin: 0 auto 50px auto; padding: 0 20px;">
+
+    <!-- Two-column image grid -->
+    <div style="
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-bottom: 0;
+    ">
+
+      <!-- Consistently Good -->
+      <div style="
+        background: #ffffff;
+        border: 1px solid #e6e6e6;
+        border-radius: 18px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        overflow: hidden;
+      ">
+        <div style="padding: 14px; background: #fafafa; border-bottom: 1px solid #eee;">
+          <img src="assets/image/ve_consistent_good.png" alt="Consistently good (s,a)" style="width:100%; height:auto; display:block; border-radius:10px;">
+        </div>
+        <div style="padding: 16px 20px 18px 20px;">
+          <p style="margin:0; font-size:0.88rem; color:#333; line-height:1.7;">
+            <b>Case 1: Consistently good $(s,a)$.</b>
+            The return distribution is concentrated around high values. Since variance is already low,
+            the reweighting has minimal impact: $\mathcal{E}(Z) \approx \mathbb{E}[Z]$.
+            Learning proceeds as under the standard expectation.
+          </p>
+        </div>
+      </div>
+
+      <!-- Consistently Poor -->
+      <div style="
+        background: #ffffff;
+        border: 1px solid #e6e6e6;
+        border-radius: 18px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        overflow: hidden;
+      ">
+        <div style="padding: 14px; background: #fafafa; border-bottom: 1px solid #eee;">
+          <img src="assets/image/ve_consistent_poor.png" alt="Consistently poor (s,a)" style="width:100%; height:auto; display:block; border-radius:10px;">
+        </div>
+        <div style="padding: 16px 20px 18px 20px;">
+          <p style="margin:0; font-size:0.88rem; color:#333; line-height:1.7;">
+            <b>Case 2: Consistently poor $(s,a)$.</b>
+            The return distribution is concentrated around low values. Again, variance is low,
+            so the reweighting is negligible: $\mathcal{E}(Z) \approx \mathbb{E}[Z]$.
+            Learning proceeds normally.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Explanation box below -->
+    <div style="
+      margin-top: 22px;
+      background: #ffffff;
+      border: 1px solid #e6e6e6;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      padding: 22px 26px;
+      line-height: 1.75;
+      font-size: 0.92rem;
+      color: #333;
+    ">
+      <p style="margin:0 0 12px 0;">
+        <b style="color:#FF2D8E;">How does the variance-averse expectation work adaptively?</b>
+      </p>
+      <p style="margin:0 0 10px 0;">
+        Eq.&thinsp;(11) is a <b>reweighted, tail-sensitive expectation</b>:
+        the factor $(1 - C(z_k))^\delta$ downweights atoms in the optimistic upper tail
+        while relatively emphasizing lower and middle regions.
+        Its corrective strength increases with the variance of the return distribution:
+      </p>
+      <p style="margin:0 0 6px 0;">
+        <b>1)</b> For <b>consistently good</b> or <b>2) consistently poor</b> $(s,a)$ pairs,
+        the return distribution is concentrated, so the reweighting has minimal impact
+        and $\mathcal{E}(Z) \approx \mathbb{E}[Z]$.
+      </p>
+      <p style="margin:0 0 10px 0;">
+        <b>3)</b> The critical case is <b style="color:#FF2D8E;">inconsistently good</b> $(s,a)$ (shown above),
+        where successful and unsuccessful outcomes are mixed, leading to high variance.
+        Here, the upper tail is substantially downweighted, shifting emphasis toward more typical outcomes
+        and mitigating optimistic extrapolation under limited offline data.
+      </p>
+      <p style="margin:0;">
+        Importantly, $\mathcal{E}(Z)$ assigns <b>lower values</b> to state-action pairs with high return variance
+        — rather than directly compressing the distribution — thereby guiding the policy toward more reliable regions.
+        This is supported by the decreased Var$[Z]$ as the policy shifts toward inherently less dispersed $(s,a)$ pairs.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- 💡 HIGHLIGHT BOX -->
   <div class="highlight-box">
     The $n$-step return with a <span class="emph">variance-averse expectation</span> effectively addresses the challenges of long-horizon, sparse-reward environments in offline RL.
   </div>
