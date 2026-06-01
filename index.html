@@ -29,6 +29,13 @@
       letter-spacing: -0.4px;
     }
 
+    .hero .subtitle {
+      font-size: 18px;
+      color: #444;
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+
     .brand { font-weight: 800; color: #FF2D8E; }
 
     .buttons { margin-top: 18px; }
@@ -102,6 +109,7 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
       line-height: 1.75;
       font-size: 0.95rem;
+      text-align: justify;
     }
 
     /* Reviewer Note Banner */
@@ -127,7 +135,7 @@
     }
 
     /* ==========================================
-       ✅ UPDATED: QUALITATIVE VIDEO (2 videos)
+       ✅ QUALITATIVE VIDEO (2 videos)
     ========================================== */
 
     .pair-header-row {
@@ -462,7 +470,8 @@
       <span class="brand">VAN-Flow:</span>
       Variance-Averse $n$-Step Offline Reinforcement Learning <br>for Sparse Long-Horizon Environments
     </h1>
-    <p><em>NeurPIS 2026</em></p>
+    <p class="subtitle">Reliable-Action Selection for Generative Actors under Heterogeneous Offline Data</p>
+    <p><em>NeurIPS 2026</em></p>
 
     <div class="buttons">
       <a href="https://drive.google.com/file/d/180hf48Z3sBH6S1b0qBaSsSck4unHrWVp/view?usp=drive_link">📄 Paper</a>
@@ -473,7 +482,9 @@
 
   <!-- 💡 HIGHLIGHT BOX -->
   <div class="highlight-box">
-    The $n$-step return with a <span class="emph">variance-averse expectation</span> effectively addresses the challenges of long-horizon, sparse-reward environments in offline RL.
+    A <span class="emph">variance-averse expectation</span> over categorical return distributions enables
+    <span class="emph">reliable-action selection</span> for generative actors, stabilizing $n$-step offline RL
+    in sparse, long-horizon environments with heterogeneous behavior data.
   </div>
 
 
@@ -515,21 +526,21 @@
   <div class="section-divider"></div>
   <h2 class="fancy-title">Abstract</h2>
 
-  <!-- 🧾 ABSTRACT IN GRAY BOX -->
+  <!-- 🧾 ABSTRACT (aligned with paper) -->
   <div class="abstract-box">
-    Offline reinforcement learning (RL) in sparse, long-horizon environments is challenging because 
-    value estimation errors compound over long backup horizons, and offline datasets often provide 
-    limited coverage. While $n$-step returns mitigate long-horizon bias, they also amplify 
-    return variance, which can destabilize offline learning under heterogeneous behavior data. 
-    We show that this variance amplification constitutes a primary failure mode of naïvely applying 
-    long-horizon return targets in offline RL. 
-    To address this challenge, we propose 
-    <b style="color:#FF2D8E;">VAN-Flow</b>, 
-    a variance-averse offline RL framework that couples $n$-step learning with 
-    categorical distributional value estimation. 
-    VAN-Flow introduces a variance-averse expectation that downweights unreliable high-variance return targets, 
-    together with a $Q$-guided flow-matching policy and rejection sampling to mitigate out-of-distribution actions. 
-    Notably, VAN-Flow shows remarkable improvements on challenging datasets with heterogeneous behavior data.
+    Generative actors are transforming offline reinforcement learning (RL) by enabling expressive policy classes
+    that model complex action distributions. However, this expressiveness also exposes a key challenge in
+    heterogeneous datasets: generative policies can reproduce <i>unreliable action modes</i> whose return distributions
+    exhibit high variance, occasionally yielding high returns by chance but lacking consistency. Consequently,
+    maximizing the expected $Q$-value alone is insufficient for identifying <i>reliable actions</i>.
+    We propose <b style="color:#FF2D8E;">VAN-Flow</b> (<i>Variance-Averse $n$-step Flow</i>), a framework that promotes
+    reliable actions in generative offline RL. VAN-Flow combines (i) a categorical distributional critic,
+    (ii) a <i>variance-averse expectation</i> operator that smoothly reweights atom probabilities to favor actions
+    with both high returns and low dispersion, and (iii) a flow-matching generative actor guided via rejection
+    sampling. Unlike CVaR or mean–variance objectives, the operator redistributes probability mass over the
+    categorical return distribution without hard truncation or auxiliary penalty terms.
+    Across more than $40$ tasks from D4RL and OGBench, VAN-Flow consistently outperforms strong baselines,
+    with the largest gains in long-horizon and high-variance regimes where reliable action selection becomes critical.
   </div>
 
   <div class="section-divider"></div>
@@ -544,9 +555,11 @@
       <div class="card-body">
         <div class="card-title">Why Variance-Averse is Needed?</div>
         <p style="margin:0;color:#333;">
-          Long-horizon decision-making under sparse rewards is challenging because informative feedback is delayed and
-          rarely observed, making value estimation susceptible to error propagation. This becomes more severe in offline RL
-          due to limited dataset coverage and heterogeneous behavior policies.
+          Under heterogeneous offline data, generative actors faithfully fit the dataset distribution and may reproduce
+          <i>unreliable action modes</i>—action modes whose return distributions exhibit high variance, occasionally
+          yielding high returns by chance but lacking consistency. The expected $Q$-value alone cannot distinguish
+          reliable from unreliable modes, since two state–action pairs with identical $\mathbb{E}[Q]$ can differ
+          drastically in dispersion. This issue is amplified by $n$-step returns in sparse, long-horizon environments.
         </p>
       </div>
     </div>
@@ -559,9 +572,11 @@
       <div class="card-body">
         <div class="card-title">Variance-Averse Expectation</div>
         <p style="margin:0;color:#333;">
-          VAN-Flow introduces a variance-averse expectation that downweights unreliable high-variance $n$-step return targets
-          using a categorical distributional critic, preserving bias-reduction benefits while preventing variance-induced
-          instability.
+          VAN-Flow introduces a <i>variance-averse expectation</i> $\mathcal{E}(Z)$ that smoothly reweights atom
+          probabilities of a categorical return distribution via a CDF-based aversion intensity $\delta$,
+          jointly favoring high-return and low-variance actions. Unlike CVaR or mean–variance objectives,
+          $\mathcal{E}(Z)$ requires no hard truncation or auxiliary penalty term and is natively compatible
+          with categorical distributional critics.
         </p>
       </div>
     </div>
@@ -585,8 +600,10 @@
           <div class="text-box">
             <div class="h">Categorical Distributional Critic</div>
             <p>
-              VAN-Flow represents the $n$-step return target as a categorical distribution and applies a
-              variance-averse expectation to stabilize value learning under heterogeneous offline data.
+              The critic $Z_\psi(\boldsymbol{s}_t,\boldsymbol{a}_t)$ models the full $n$-step return distribution
+              over fixed categorical atoms, exposing the variance structure that a regression-based critic cannot.
+              The critic is trained against the projected $n$-step distributional Bellman target with cross-entropy
+              loss, using a variance-averse target action obtained via rejection sampling.
             </p>
           </div>
         </div>
@@ -614,10 +631,12 @@
           </div>
 
           <div class="text-box">
-            <div class="h">Flow-based Actor</div>
+            <div class="h">Flow-based Actor with $Q$-Guidance</div>
             <p>
-              The actor is trained via flow matching guided by the critic, aligning action generation
-              with high-value regions and improving robustness in offline RL.
+              The actor is parameterized by a state-conditioned velocity field and trained via flow matching with a
+              single-step Euler $Q$-guidance term using the variance-averse expectation $\mathcal{E}(Z_\psi)$.
+              At inference, $M$ candidate actions are generated and re-ranked via rejection sampling, selecting
+              actions with high expected return <i>and</i> low return dispersion.
             </p>
           </div>
         </div>
@@ -637,14 +656,16 @@
   <!-- Q1 -->
   <div class="qa">
     <span class="qtag">[<b>Q1.</b>]</span>
-    Does the <span class="magenta">variance-averse expectation</span> enhance RL performance in sparse-reward and long-horizon environments?
+    Does the <span class="magenta">variance-averse expectation</span> enable stable $n$-step learning in sparse, long-horizon offline RL?
   </div>
   <div class="result-card">
     <div class="table-frame">
       <img src="assets/image/table_antmaze_results.PNG" alt="AntMaze results table">
       <div class="table-caption">
-        <b>Offline performance on AntMaze tasks.</b> Scores are normalized following the D4RL protocol.
-        Entries marked "--" indicate results not reported in prior work.
+        <b>Offline performance on D4RL AntMaze tasks.</b> Scores are normalized following the D4RL protocol.
+        Entries marked "--" indicate results not reported in prior work. VAN-Flow consistently achieves strong results
+        from <i>umaze</i> to <i>large-diverse</i>, indicating that explicit return-variance control is crucial for
+        stably leveraging $n$-step returns in offline RL.
       </div>
     </div>
   </div>
@@ -652,13 +673,15 @@
   <!-- Q2 -->
   <div class="qa">
     <span class="qtag">[<b>Q2.</b>]</span>
-    Does the proposed solution outperform existing <b><i>flow-based policies</i></b>?
+    Does <b style="color:#FF2D8E;">VAN-Flow</b> outperform existing <b><i>flow-based policies</i></b> under heterogeneous, high-variance datasets?
   </div>
   <div class="result-card">
     <div class="table-frame">
       <img src="assets/image/table_ogbench_results.PNG" alt="OGBench results table">
       <div class="table-caption">
-        <b>Performance comparison in OGBench.</b> Task-wise scores across Gaussian-based and Flow-based baselines.
+        <b>Performance comparison on OGBench.</b> Task-wise scores across Gaussian-based and Flow-based baselines.
+        On high-variance datasets (e.g., <i>antmaze-large-explore</i>), naive flow-based $n$-step methods (FQL-$n$, BFN-$n$)
+        collapse far more severely than their Gaussian counterpart, while VAN-Flow remains robust.
       </div>
     </div>
   </div>
@@ -666,13 +689,15 @@
   <!-- Q3 -->
   <div class="qa">
     <span class="qtag">[<b>Q3.</b>]</span>
-    Does <b style="color:#FF2D8E;">VAN-Flow</b> have strong generalization ability in off-to-online adaptation?
+    Does <b style="color:#FF2D8E;">VAN-Flow</b> serve as a strong initialization for <b><i>off-to-online fine-tuning</i></b>?
   </div>
   <div class="result-card">
     <div class="table-frame">
       <img src="assets/image/table_off2on_results.PNG" alt="Offline-to-online results table">
       <div class="table-caption">
-        <b>Offline-to-online fine-tuning performance.</b> Gray indicates offline performance before fine-tuning and bold indicates after fine-tuning.
+        <b>Offline-to-online fine-tuning performance.</b> Gray scores indicate offline performance before fine-tuning;
+        bold scores indicate performance after online fine-tuning. VAN-Flow adapts stably online and consistently
+        improves with additional interaction, matching or surpassing the state-of-the-art horizon-reduction baseline.
       </div>
     </div>
   </div>
